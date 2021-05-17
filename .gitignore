@@ -9,7 +9,6 @@
 /openapi.yaml
 **node_modules**
 **data*.json
-*[a-zA-Z][0-9].*
 
 __**
 **Copy**
