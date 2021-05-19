@@ -19,11 +19,14 @@ client:
   servers:
     - url: https://alicon.aliconnect.nl/api
 ref:
-  wiki: https://aliconnect.nl/sites/alicon/wiki
-  home: https://aliconnect.nl/sites/alicon
+  wiki: //alicon.aliconnect.nl/wiki
+  home: //alicon.aliconnect.nl
 css:
   basebg: linear-gradient(to right, rgb(59,125,237), rgb(43,162,76))
   basefg: white
+  header-color: rgb(43,162,76)
+  header-font-family: Segoe UI Light
+  link: rgb(59,125,237)
 menu:
   Organisatie:
     className: crm
