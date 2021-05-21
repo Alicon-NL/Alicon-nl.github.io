@@ -4,6 +4,6 @@ Ik ben een organisatie ontwikkelaar door strategie, structuur en systemen te ver
 
 One Source, One Truth in een veilige cloud omgeving.
 
-- Contact: [+31620068073](tel:+31620068073)
-- Mail: [max.van.kampen@alicon.nl](mailto:max.van.kampen@alicon.nl)
+- [max.van.kampen@alicon.nl](mailto:max.van.kampen@alicon.nl)
+- [+31620068073](tel:+31620068073)
 - [LinkedIn](https://www.linkedin.com/in/maxvankampen/)
