@@ -1,0 +1,67 @@
+body{
+  max-width:18cm;
+}
+* {font-family:sans-serif}
+table{border-collapse:collapse;}
+td{border:solid 1px #ccc}
+body{font-family:Arial;font-size:10pt;margin-bottom:1500px;}
+td{vertical-align:top;padding:0 5px;}
+a{text-decoration:none;}
+.datum {width:80px;}
+.oms {width:400px;}
+.bedrag {width:60px;text-align:right;}
+.begin,.tot {font-style:italic;color:#999;}
+.h1 {font-size:130%;font-weight:bold;} .h1 td {padding-top:10px;}
+.h2 {font-size:120%;} .h2 .oms {padding-left:10px;}
+.h3 {font-size:115%;} .h3 .oms {padding-left:20px;}
+.h4 {font-size:110%;} .h4 .oms {padding-left:30px;}
+.h5 {font-size:105%;} .h5 .oms {padding-left:40px;}
+.h6 {font-size:100%;} .h6 .oms {padding-left:50px;}
+.h7 {font-size:100%;} .h7 .oms {padding-left:60px;}
+.h8 {font-size:100%;} .h8 .oms {padding-left:70px;}
+.h9 {font-size:100%;} .h9 .oms {padding-left:80px;}
+tr.none {display:none;}
+
+
+.h3+tr.rows{display:none;}
+
+table.balans tr>:nth-child(n+3) {
+  text-align: right;
+  width:60px;
+}
+table.balans tr>:nth-child(4n+3) {
+  border-left: solid 3px gray;
+  font-weight: bold;
+}
+table.balans td {
+  white-space: nowrap;
+}
+tr.sum {
+  background-color: #eee;
+}
+
+table.boek tr>:nth-child(n+3) {
+  text-align: right;
+  width:60px;
+}
+table.boek tr>:nth-child(4) {
+  color:red;
+}
+table.boek tr>:nth-child(2) {
+  width:600px;
+}
+
+
+/*tr>:nth-child(2) {width:600px;}
+tr>:nth-child(3),
+tr>:nth-child(4) {width:60px;text-align:right;}
+.boek{font-size:10pt;}
+.hdr{font-size:14pt;line-height:40px;}
+.red{color:red;}
+/*tr>:nth-child(1) {width:80px;}
+tr>:nth-child(2) {width:80px;}
+tr>:nth-child(3) {width:300px;}
+tr>:nth-child(4),
+tr>:nth-child(5),
+tr>:nth-child(6),
+tr.boek>td{border-top:solid 1px black}
