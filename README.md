@@ -1,9 +1,30 @@
-Welkom op Alicon
+![Alicon Process Development](img/alicon-process-development.png)
+Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie, de absolute waarheid, overal en op ieder moment.
 
-Ik ben een organisatie ontwikkelaar door strategie, structuur en systemen te verbinden. Daarbij heb ik [het gereedschap](//aliconnect.github.io/aliconnect) waar iedere organisatie om vraagt: Een veilige database waar alle informatie gestructureerd wordt en waarmee systemen kunnen koppelen. Daarmee is [aliconnect](//aliconnect.github.io/aliconnect) de verbindende schakel en informatie manager voor een organisatie.
+Onze aanpak is strategie, structuur en systemen te verbinden. Wij zorgen voor de informatie-_architectuur_ om uw informatie-infra _structuur_ te ondersteunen.
 
-One Source, One Truth in een veilige cloud omgeving.
+Wie heeft waarom, wat, waar en wanneer nodig en de beste benodigde informatie architectuur nodig om uw processen te ondersteunen.
 
-- [max.van.kampen@alicon.nl](mailto:max.van.kampen@alicon.nl)
-- [+31620068073](tel:+31620068073)
-- [LinkedIn](https://www.linkedin.com/in/maxvankampen/)
+Alicon heeft hiervoor de _kennis_ en [_het gereedschap_](//aliconnect.github.io/aliconnect), de verbindende schakel tussen systemen, een veilige interface naar iedere data bron van informatie, afgestemd op gebruiker.
+
+
+# [Automation Integration Manager](//aliconnect.nl/wiki/aim-automation-integration-manager)
+
+[![Aliconnect Automation Integration Manager](https://aliconnect.nl/img/aim-automation-integration-manager.png)](//aliconnect.nl/wiki/aim-automation-integration-manager)
+Introductie over de automation integration Manager
+
+# 7S Organisatie Model McKinsey
+
+![7S Organisatie Model McKinsey](img/mckinsey-7s.png)
+
+# ISA-95 Levels of Automation
+
+![ISA-95 Level of Automation](img/isa95-levels-of-automation.png)
+
+# ISA-95 Control levels of Automation
+
+![ISA-95 Level of Automation](img/isa95-control-levels-of-automation.png)
+
+# ISA-95 Manufacturing Operations Activities
+
+[![ISA-95 Manufacturing Operations Activities](img/isa95-manufacturing-operations-activities.png)](wiki/isa95-manufacturing-operations-activities)

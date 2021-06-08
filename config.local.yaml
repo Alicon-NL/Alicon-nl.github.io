@@ -18,9 +18,9 @@ ws:
 client:
   servers:
     - url: https://alicon.aliconnect.nl/api
-ref:
-  wiki: //alicon.aliconnect.nl/wiki
-  home: //alicon.aliconnect.nl
+# ref:
+#   wiki: //alicon.aliconnect.nl/wiki
+#   home: //alicon.aliconnect.nl
 css:
   basebg: linear-gradient(to right, rgb(59,125,237), rgb(43,162,76))
   basefg: white

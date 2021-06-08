@@ -1,0 +1,254 @@
+/aliconnect/webroot/aliconnect/wiki:
+  - Home:
+    - Welkom
+    - Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor
+      is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie.
+      De absolute waarheid, overal en op ieder moment.
+    - Explore:
+      - Explore
+      - Uitleg over explore
+      - Explore-Overview:
+        - Overview
+        - Uitleg over Overview
+        - Explore-Overview-Product:
+          - Product overzicht
+          - Voor iedere type klant een afgestemd product
+          # - |
+          #   1. `Basic`: Beschikbaar na aanmaken account
+          #   2. `Admin`: Beschikbaar voor administrator
+          #   3. `Config`: Beschikbaar na standaard configuratie
+          #   4. `Custom No-code`: Beschikbaar na klant specifieke configuratie
+          #   5. `Custom Low-code`: Beschikbaar in bibliotheek en te configureren/programmeren middels low-code
+          #   6. `Custom Development`: Beschikbaar in bibliotheek en te configureren/programmeren door software engineer
+          #   7. `Support`: Klant specifieke ondersteuning
+        - Explore-Authenticatie:
+          - Authenticatie
+          - Authenticatie
+          # - |
+          #   * Uniek persoonlijk account. Uniek middels Mail adres t.b.v. webshops.
+          #   * Uniek persoonlijk account. Uniek middel Mail adres  en 06 nummer verificatie t.b.v. domein accounts.
+          #   * Uniek persoonlijk account middels BSN verificatie  t.b.v. persoon identificatie.^4^
+          #   * Authenticatie middels Wachtwoord.
+          #   * 2 traps authenticatie middels EMail code verificatie . Incl code timeout controle.
+          #   * 2 traps authenticatie middels SMS code verificatie . Incl code timeout controle.
+          #   * 2 traps authenticatie middels Webapp en QR code verificatie.
+          #   * MS Account koppeling.
+          #   * DigiD koppeling.^5^
+          #   * Gebruikers ondersteuning bij verlies van mobiel apparaat i.v.m. oplossen 2 traps verificatie.^7^
+      - Explore-Terms-of-use
+      - Explore-Privacy-policy
+      - Explore-Cookie-policy
+      - Explore-Copyright-policy
+      - Explore-Roadmap
+      - Explore-Changelog
+      - Explore-Development-issues
+    - Learn:
+      - Learn
+      - Learn-Markdown
+      - Learn-YAML-Basics
+      - Learn Config:
+        - Config
+        - Learn-Config-Get-started
+        - Learn Config Schema:
+          - Schema
+          - Learn Config Schema Basics
+          - Learn Config Schema Item
+          - Learn Config Schema Folder
+          - Learn Config Schema CRM:
+            - CRM
+            - Learn Config Schema Contact
+            - Learn Config Schema Company
+          - Learn Config Schema Engineering:
+            - Engineering
+            - Learn Config Schema Enterprise
+            - Learn Config Schema Site
+            - Learn Config Schema Area
+            - Learn Config Schema ProcessCell
+            - Learn Config Schema Unit
+            - Learn Config Schema EquipmentModule
+            - Learn Config Schema ControlModule
+            - Learn Config Schema Control
+            - Learn Config Schema ControlIO
+            - Learn Config Schema Device
+            - Learn Config Schema Attribute
+          # - Learn Config Schema Webpage
+    - Develop:
+      - Develop
+      - Develop Learn:
+        - Develop Learn
+        - Toelichting
+        - Learn-Config-Import-Excel
+        - Learn-Config-Rules
+        - Learn-Coding-Naming-conventions
+        - Learn-HTTP-Error-Codes
+        - Learn-Inline-Documentation
+        - Learn-JSON-Javascript-Object-Notation-Schema
+        - Learn-JSON-Web-Token-JWT
+        - Learn-Mastering-the-URL
+        - Learn OData:
+          - Learn OData
+          - Toelichting Learn-OData
+          - Learn OData Basics
+          - Learn OData JSON Format
+          - Learn OData Object ID Definition
+          - Learn OData Protocol Details
+          - Learn OData Protocol
+          - Learn OData URL Conventions
+        - Learn Open API Standard
+        - Learn Open SSL
+        - Learn RegEx
+        - Learn Wiki Write document
+        - Learn Documentatie schrijven
+      - Develop Get started
+      # - Develop-Javascript-Aliconnect-Login-2
+      - Develop Javascript:
+        - Develop Javascript
+        - Introductie
+        - Develop Javascript Aliconnect Login
+        - Develop Javascript Cloud Mailer
+        - Develop Javascript Cloud Printer
+        - Develop Javascript Form Input Draw
+        - Develop Javascript Notification
+        - Develop Javascript PDF to TXT
+      - Develop Location of files
+      - Develop Make installable app
+      - Develop PHP:
+        - Develop PHP
+        - Introductie
+        - Develop PHP SOAP
+      - Setup:
+        - Setup
+        - Introductie
+        - Setup Authentication
+        - Setup Development Workstation
+        - Setup Firefox
+        - Setup Office PC
+        - Setup Office Word Web app
+        - Setup Windows:
+          - Setup Windows
+          - Toelichting Setup-Windows
+          - Setup Windows Auto start application
+          - Setup Windows Automatic reboot and reload
+          - Setup Windows Server FTP
+          - Setup Windows Server IIS
+          - Setup Windows Server SNMP Service
+          - Setup Windows Server SSL
+          - Setup Windows Symbolic Links
+          - Setup Windows Web.config
+        - Systeem configuratie
+        - Tutorial
+/aliconnect/webroot/alicon/wiki:
+  - Home:
+    - Welkom
+    - Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor
+      is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie.
+      De absolute waarheid, overal en op ieder moment.
+    - Onze aanpak is strategie, structuur en systemen te verbinden.
+      Wij zorgen voor de informatie-_architectuur_ om uw informatie-infra _structuur_ te ondersteunen.
+    - Wie heeft waarom, wat, waar en wanneer nodig en de beste benodigde informatie architectuur nodig om uw processen te ondersteunen.
+    # - Explore-Terms-of-use
+    # - Explore:
+    #   - Explore
+    #   - Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor
+    - Process Development:
+      - Process Development
+
+      - Structure:
+        - Structure
+        - Standaardisatie:
+          - Standaardisatie
+          - ISA:
+            - ISA International Standard for Automation
+            - ISA-88:
+              - ISA-88
+              - ISA-88 Physical structure:
+                - ISA-88 Physical structure
+                - Uitleg
+            - ISA-95:
+              - ISA-95
+              - De internationale standaard voor de integratie van kantoor- en productieautomatiseringssystemen
+              - ISA-95 bestaat uit modellen en terminologie die nauwkeurig in kaart brengen
+                welke informatie moet worden uitgewisseld tussen systemen gericht op verkoop,
+                financiën en logistiek en systemen gericht op productie, onderhoud en kwaliteit.
+                Aan de hand van UML object modellen wordt deze informatie gestructureerd om
+                zodoende gestandaardiseerde interfaces te kunnen ontwikkelen tussen ERP- en MES
+                systemen. De ISA-95 standaard is een goede leidraad om in kaart te brengen welke
+                informatie moet worden uitgewisseld tussen kantoorautomatiseringssystemen en
+                productieautomatiseringssystemen. Bovendien kan ISA-95 worden gebruikt voor het
+                opstellen van User Requirements, voor (MES) leveranciersselecties en als basis
+                voor het ontwikkelen van MES systemen en databases. De ANSI/ISA-95 (ISA-95) is
+                zo'n standaard voor Enterprise-Control System Integration.
+              - ISA-95 Levels of automation:
+                - ISA-95 Levels of automation
+                - Uitleg AIM jhgjhg dsfgdfgsdf
+              - ISA-95 Control levels of automation:
+                - ISA-95 Control levels of automation
+                - Uitleg
+              - ISA-95 Manufacturing operations activities:
+                - ISA-95 Manufacturing operations activities
+                - Uitleg
+      - Systems:
+        - Systems
+      - Skills:
+        - Skills
+    - Werkwijze:
+      - Werkwijze
+      - Ontwerp:
+        - Ontwerp
+        - UML:
+          - UML
+          # - Learn-UML-Activity-diagram
+          # - Learn-UML-Application-and-implementation-stadium
+          # - Learn-UML-Component-and-deployment-diagram
+          # - Learn-UML-Geavanceerde-concepten
+          # - Learn-UML-Klasse-en-object-diagrammen
+          # - Learn-UML-Klassediagram-met-geavanceerde-concepten
+          # - Learn-UML-Object-constraint-language
+          # - Learn-UML-OCL
+          # - Learn-UML-OO
+          # - Learn-UML-Samenhang
+          - UML-Sequence-collaboration-diagram:
+            - UML-Sequence-collaboration-diagram
+            - |
+              * Interactie
+              * Instantie en levenslijn
+              * Boodschap
+              * Tijdconstraints
+              * Asynchrone boodschap
+              * Conditionele boodschap
+              * Iteratie van boodschappen
+              * Activering van een object
+              * Actieve objecten
+              * Recursie of zelfaanroep
+              * Creatie en verwijdering
+              * Resultaat van een operatie aanroep
+              * Stereotype voor link oorsprong
+            - Learn-UML-Sequence-diagram-voorbeeld-inloggen:
+              - UML Sequence-diagram voorbeeld inloggen
+          - Learn-UML-State-diagram:
+            - Learn-UML-State-diagram
+          - Learn-UML-Subsystem-diagram:
+            - Learn-UML-Subsystem-diagram
+          # - Learn-UML-Toestands-diagram
+          # - Learn-UML-Use-case-voorbeeld
+          # - Learn-UML-Use-case
+          # - Learn-UML-Verschil-klasse-object-diagram
+          # - Learn-UML-Werkwijze
+    - One Source One Truth:
+      - One Source, One Truth
+      - Alicon heeft hiervoor de _kennis_ en [_het gereedschap_](https://aliconnect.nl),
+        de verbindende schakel tussen systemen, een veilige interface naar iedere data bron van informatie, afgestemd op gebruiker.
+    - Learn:
+      - Learn
+      # - ISA-95-Levels-of-automation
+      # - ISA-95
+      # - ISA
+      # - isa95-manufacturing-operations-activities
+      # - Learn-ISA-88
+      # - Learn-ISA-95
+      # - Learn-Requirement-management-basics
+      # - Learn-UML
+      # - Learn-Why-projects-fail
+/aliconnect/node_modules/@aliconnect/api/wiki:
+  - Home:
+    - Welkom

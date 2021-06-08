@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html class="app"> <!--manifest="cache.appcache">-->
+<head>
+    <title>AIM APP</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8; " />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="../www/style/aimwww.css" rel="stylesheet" />
+    <link href="../www/style/aim.css" rel="stylesheet" />
+    <link href="style/print.css" rel="stylesheet" type="text/css" media="print" />
+    <script src="../www/js/aim/app.js"></script>
+</head>
+
+<body class="row main app themablue">
+    <div class="col menu">
+        <div class="row top">
+            <button class="menu" onclick="toggleattribute('menu');"></button>
+        </div>
+        <div class="col content" id="menuitems">
+            <div onclick="iframe(this, 'btwaangifte', 'php/btwaangifte.php');">BTW aangifte</div>
+            <div onclick="iframe(this, 'btwoverzicht', 'php/btwoverzicht.php');">BTW overzicht</div>
+
+            <div onclick="iframe(this, 'grootboek', 'php/grootboek.php');">Grootboek</div>
+            <div onclick="iframe(this, 'bank', 'php/bank.php');">BANK</div>
+            <div onclick="iframe(this, 'kas', 'php/kas.php');">KAS</div>
+            <div onclick="iframe(this, 'wv', 'php/wv.php');">W&V</div>
+            <div onclick="iframe(this, 'deb1', 'php/deb.php?t=Debiteuren 2014&q=select *,relatie AS sub1,bedrijf AS sub0 from aliconadmin.dbo.admin_debiteuren WHERE datum<\'1-1-2015\' order by bedrijf,relatie,datum');">Debiteuren 2014</div>
+            <div onclick="iframe(this, 'deb2', 'php/deb.php?t=Debiteuren Openstaand 2014&q=select *,relatie AS sub1,bedrijf AS sub0 from aliconadmin.dbo.admin_debiteuren WHERE datum<\'1-1-2015\' AND ( datum_betaald IS NULL OR datum_betaald>=\'1-1-2015\' ) order by bedrijf,relatie,datum ');">Debiteuren openstaand 2014</div>
+            <div onclick="iframe(this, 'deb3', 'php/deb.php?t=Debiteuren Openstaand Actueel&q=select *,relatie AS sub1,bedrijf AS sub0 from aliconadmin.dbo.admin_debiteuren WHERE datum_betaald IS NULL order by bedrijf,relatie,datum ');">Debiteuren openstaand Actueel</div>
+            <div onclick="iframe(this, 'deb4', 'php/deb.php?t=Debiteuren Alles&q=select *,relatie AS sub1,bedrijf AS sub0 from aliconadmin.dbo.admin_debiteuren order by bedrijf,relatie,datum');">Debiteuren Alles</div>
+            <div onclick="iframe(this, 'balans1', 'php/balans.php?jaar=2014');">Balans 2014</div>
+            <div onclick="iframe(this, 'balans2', 'php/balans.php?jaar=2015');">Balans 2015</div>
+            <div onclick="iframe(this, 'btw1', 'php/btw.php');">BTW</div>
+            <div onclick="iframe(this, 'btw2', 'php/btw.php?eenheid');">BTW fiscale eenheid</div>
+            <div onclick="iframe(this, 'btw3', 'php/lijst.php?t=BTW voorbelast&q=select *,\'fiscaaleenheid\' as sub0, kwartaal AS sub1 from aliconadmin.dbo.admin_boeking WHERE bedrijf in (\'Alicon Systems BV\',\'MJVK Beheer BV\',\'Alicon Projects BV\') AND boeknr <> 800000 AND btw<>0 ORDER BY kwartaal&cum=bedrag,btw&tot=bedrag,btw');">BTW voorbelast eenheid</div>
+        </div>
+        <div class="row view">
+            <button class="map" onclick="toggleattribute('map');"></button>
+            <button class="viewa" onclick="btnviewclick('a');"></button>
+            <button class="viewb" onclick="btnviewclick('b');"></button>
+            <button class="options" onclick="toggleattribute('options');"></button>
+            <button class="logout" onclick="toggleattribute('');"></button>
+        </div>
+    </div>
+    <div id="details" class="content row">
+
+    </div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "php/data.php", true);
+        var params = new FormData();
+        params.append('q', 0);
+        params.append('lijst', 'lijst');
+        xhr.onload = function (e) {
+            console.log(xhr.responseText);
+            var data = JSON.parse(xhr.responseText);
+            with (document.getElementById('menuitems')) {
+                for (var i=0,d;d=data.row[i];i++) {
+                    console.log(i);
+                    var e=appendChild(document.createElement('div'));
+                    e.rapportId=d.rapportId;
+                    e.i=i;
+                    e.innerHTML=d.naam;
+                    e.addEventListener('click',function() {iframe(this,'lijst'+this.i,'php/lijst.php?i='+this.rapportId);});
+                }
+            }
+        }
+        xhr.send(params);
+        
+    </script>
+</body>
+</html>

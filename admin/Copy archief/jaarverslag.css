@@ -1,0 +1,58 @@
+﻿body {width:1200px;font-size:14pt;max-width:1000px;}
+table,* {font-family:arial}
+
+p.titel {font-size:30pt;text-align:center;margin:30px 0;}
+
+cell {padding:5px 5px 5px 0;display:table-cell}
+table {border-collapse:collapse;width:100%;}
+td {text-align:right;width:60px;}
+table tr > :first-child {text-align:left;width:400px;}
+td.w {width:250px;text-align:left;}
+tr.total td  {font-weight:bold;border-top:solid 1px black;}
+tr.sum > :nth-child(n + 2) {font-weight:bold;border-top:solid 2px black;}
+tr td {border:solid 1px #EEE;}
+div.toe {font-size:9pt;}
+a {text-decoration:none;}
+.table {display: -webkit-box;display: -moz-box;display: -ms-flexbox; display: flex; display: -webkit-flex; flex-flow: row; -webkit-flex-flow: row;}
+div {line-height:16pt;}
+.table > * {flex: 0 0 70px; -webkit-flex: 0 0 70px; -ms-flex: 0 0 70px;  text-align:right;}
+.table > :first-child {flex: 1 1 auto; -webkit-flex: 1 1 auto; -ms-flex: 1 1 auto; text-align:left}
+small {color:#888}
+
+.v1000000, 
+.v3000000, 
+.v311000000,
+.v2000000 {font-weight:bold;}
+
+tr.CRED td {color:red;}
+
+h1,h2,h3,h4,h5,h6,h7,h8,h9,h10 {margin:0;padding:0;line-height:30px;margin-top:10px;}
+h1 {font-size:18pt;}
+h2 {font-size:17pt;color:#255fb0;}
+h3 {font-size:16pt;font-style:italic;color:#417aca}
+h4 {font-size:15pt;color:#0b59c7;}
+h5 {font-size:14pt;}
+h6 {font-size:13pt;}
+h7 {font-size:12pt;color:#0b59c7;}
+h8 {font-size:11pt;}
+h9 {font-size:10pt;}
+h10 {font-size:10pt;}
+
+.tot1 {border-bottom:solid 1px #DDD;}
+/*.tot1 :nth-child(2) {border-top:solid 1px gray;}*/
+.n {line-height:30px;}
+.n0 {font-size:15pt;}
+.n1 {font-size:14.5pt;}
+.n2 {font-size:14pt;}
+.n3 {font-size:13.5pt;}
+.n4 {font-size:13pt;}
+.n5 {font-size:12.5pt;}
+.n6 {font-size:12pt;}
+.n7 {font-size:11.5pt;}
+.n8 {font-size:11pt;}
+.n9 {font-size:10.5pt;}
+.n10 {font-size:10pt;}
+.n11 {font-size:9.5pt;}
+.n.totaal {font-style:italic;}
+
+footer {page-break-before: always;}

@@ -1,0 +1,21 @@
+﻿* {font-family:Open Sans;font-size:11pt;}
+th {text-align:left;font-size:80%;}
+td {border:solid 1px #EEE;padding-right:10px;white-space:nowrap;}
+table {border-collapse:collapse;}
+.bedrag {text-align:right;}
+table tr:nth-child(even) {background-color:#daf7f2;}
+label {display:block;font-size:80%;}
+input {display:block;}
+.neg {color:red;}
+.num,.number {text-align:right;}
+
+body,html {height:100%;margin:0;padding:0;}
+.main {display: flex;display: -webkit-flex;flex-flow: row;-webkit-flex-flow: row;width: 100%;height:100%;}
+.menu {display:block;flex: 0 0 300px;-webkit-flex: 0 0 300px; -ms-flex: 0 0 300px;}
+iframe {display:block;flex: 1 0 auto;-webkit-flex: 1 0 auto; -ms-flex: 1 0 auto;}
+
+
+/*table > tbody > :nth-child(1) {position:fixed;top:0;left:0;background:white;}
+table {margin-top:30px;}*/
+
+
