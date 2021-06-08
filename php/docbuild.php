@@ -114,6 +114,7 @@ foreach ($data as $path => $domain) {
     doc($path, $item, 0, $i, $domain);
   }
   // debug($sidebar);
+  header('Content-Type: text/plain; charset=us-ascii');
   echo $path.PHP_EOL."===============".PHP_EOL.$sidebar.PHP_EOL;
   file_put_contents("$path/_Sidebar.md", $sidebar);
 }
