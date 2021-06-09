@@ -1,12 +1,13 @@
-/aliconnect/webroot/aliconnect/wiki:
+/aliconnect/webroot/sites/aliconnect/wiki:
   - Home:
-    - Welkom
+    - Aliconnect
     - Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor
       is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie.
       De absolute waarheid, overal en op ieder moment.
     - Explore:
       - Explore
       - Uitleg over explore
+      - The company [Alicon](//alicon.aliconnect.nl/wiki) is the developer of the Automation Integration Manager
       - Explore-Overview:
         - Overview
         - Uitleg over Overview
@@ -49,6 +50,8 @@
       - Learn Config:
         - Config
         - Learn-Config-Get-started
+        - Learn-Config-Import-Excel
+        - Learn-Config-Rules
         - Learn Config Schema:
           - Schema
           - Learn Config Schema Basics
@@ -74,72 +77,10 @@
           # - Learn Config Schema Webpage
     - Develop:
       - Develop
-      - Develop Learn:
-        - Develop Learn
-        - Toelichting
-        - Learn-Config-Import-Excel
-        - Learn-Config-Rules
-        - Learn-Coding-Naming-conventions
-        - Learn-HTTP-Error-Codes
-        - Learn-Inline-Documentation
-        - Learn-JSON-Javascript-Object-Notation-Schema
-        - Learn-JSON-Web-Token-JWT
-        - Learn-Mastering-the-URL
-        - Learn OData:
-          - Learn OData
-          - Toelichting Learn-OData
-          - Learn OData Basics
-          - Learn OData JSON Format
-          - Learn OData Object ID Definition
-          - Learn OData Protocol Details
-          - Learn OData Protocol
-          - Learn OData URL Conventions
-        - Learn Open API Standard
-        - Learn Open SSL
-        - Learn RegEx
-        - Learn Wiki Write document
-        - Learn Documentatie schrijven
-      - Develop Get started
-      # - Develop-Javascript-Aliconnect-Login-2
-      - Develop Javascript:
-        - Develop Javascript
-        - Introductie
-        - Develop Javascript Aliconnect Login
-        - Develop Javascript Cloud Mailer
-        - Develop Javascript Cloud Printer
-        - Develop Javascript Form Input Draw
-        - Develop Javascript Notification
-        - Develop Javascript PDF to TXT
-      - Develop Location of files
-      - Develop Make installable app
-      - Develop PHP:
-        - Develop PHP
-        - Introductie
-        - Develop PHP SOAP
-      - Setup:
-        - Setup
-        - Introductie
-        - Setup Authentication
-        - Setup Development Workstation
-        - Setup Firefox
-        - Setup Office PC
-        - Setup Office Word Web app
-        - Setup Windows:
-          - Setup Windows
-          - Toelichting Setup-Windows
-          - Setup Windows Auto start application
-          - Setup Windows Automatic reboot and reload
-          - Setup Windows Server FTP
-          - Setup Windows Server IIS
-          - Setup Windows Server SNMP Service
-          - Setup Windows Server SSL
-          - Setup Windows Symbolic Links
-          - Setup Windows Web.config
-        - Systeem configuratie
-        - Tutorial
-/aliconnect/webroot/alicon/wiki:
+      - Informatie voor ontwikkelaars vindt je in de [AIM Software Development Kit](//aliconnect.nl/sdk/wiki)
+/aliconnect/webroot/sites/alicon/wiki:
   - Home:
-    - Welkom
+    - Alicon
     - Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor
       is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie.
       De absolute waarheid, overal en op ieder moment.
@@ -236,7 +177,7 @@
           # - Learn-UML-Werkwijze
     - One Source One Truth:
       - One Source, One Truth
-      - Alicon heeft hiervoor de _kennis_ en [_het gereedschap_](https://aliconnect.nl),
+      - Alicon heeft hiervoor de _kennis_ en [_het gereedschap_](//aliconnect.nl/wiki),
         de verbindende schakel tussen systemen, een veilige interface naar iedere data bron van informatie, afgestemd op gebruiker.
     - Learn:
       - Learn
@@ -249,6 +190,72 @@
       # - Learn-Requirement-management-basics
       # - Learn-UML
       # - Learn-Why-projects-fail
-/aliconnect/node_modules/@aliconnect/api/wiki:
+/aliconnect/node_modules/@aliconnect/sdk/wiki:
   - Home:
-    - Welkom
+    - AIM Software Development Kit
+    - Toelichting
+    - One Source One Truth:
+      - One Source, One Truth
+      - Alicon heeft hiervoor de _kennis_ en [_het gereedschap_](//aliconnect.nl/wiki),
+        de verbindende schakel tussen systemen, een veilige interface naar iedere data bron van informatie, afgestemd op gebruiker.
+    - Develop Learn:
+      - Develop Learn
+      - Toelichting
+      - Develop-Coding-Naming-conventions
+      - Develop-HTTP-Error-Codes
+      - Learn-Inline-Documentation
+      - Learn-JSON-Javascript-Object-Notation-Schema
+      - Learn-JSON-Web-Token-JWT
+      - Learn-Mastering-the-URL
+      - Learn OData:
+        - Learn OData
+        - Toelichting Learn-OData
+        - Learn OData Basics
+        - Learn OData JSON Format
+        - Learn OData Object ID Definition
+        - Learn OData Protocol Details
+        - Learn OData Protocol
+        - Learn OData URL Conventions
+      - Learn Open API Standard
+      - Learn Open SSL
+      - Learn RegEx
+      - Learn Wiki Write document
+      - Learn Documentatie schrijven
+    - Develop Get started
+    # - Develop-Javascript-Aliconnect-Login-2
+    - Develop Javascript:
+      - Develop Javascript
+      - Introductie
+      - Develop Javascript Aliconnect Login
+      - Develop Javascript Cloud Mailer
+      - Develop Javascript Cloud Printer
+      - Develop Javascript Form Input Draw
+      - Develop Javascript Notification
+      - Develop Javascript PDF to TXT
+    - Develop Location of files
+    - Develop Make installable app
+    - Develop PHP:
+      - Develop PHP
+      - Introductie
+      - Develop PHP SOAP
+    - Setup:
+      - Setup
+      - Introductie
+      - Setup Authentication
+      - Setup Development Workstation
+      - Setup Firefox
+      - Setup Office PC
+      - Setup Office Word Web app
+      - Setup Windows:
+        - Setup Windows
+        - Toelichting Setup-Windows
+        - Setup Windows Auto start application
+        - Setup Windows Automatic reboot and reload
+        - Setup Windows Server FTP
+        - Setup Windows Server IIS
+        - Setup Windows Server SNMP Service
+        - Setup Windows Server SSL
+        - Setup Windows Symbolic Links
+        - Setup Windows Web.config
+      - Systeem configuratie
+      - Tutorial
