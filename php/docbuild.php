@@ -14,21 +14,60 @@ function debug() {
 	die(json_encode($arg_list,JSON_PRETTY_PRINT,JSON_UNESCAPED_SLASHES));
 }
 $data = yaml_parse_file('docbuild.yaml');
-function doc($path, $row, $level, $i, $chapters, $parent = null) {
+function doc($path, $row, $level, $i, $chapters, $parent = null, $namepath = '') {
   global $sidebar,$dir,$done;
   foreach ($row as $key => $item) {
+    $title = $key;
     $name = str_replace(' ','-',$key);
+    $name = str_replace('Home-','',$namepath . $name);
+
+    echo "$name\n";
+
     if (isset($done[$path.$name])) {
       echo 'DUBBEL = '.$path.$name.PHP_EOL;
       continue;
     }
     $done[$path.$name] = 1;
-    $line1 = array_shift($item);
-    $title = preg_replace('/.*?# /','',$line1);
-    $title = preg_replace('/\n.*/','',$title);
+    // $line1 = array_shift($item);
 
-    $line1 = preg_replace('/.*?# .*?\n/','',$line1);
-    array_unshift($line1,$item);
+    if (is_file($fname = "$path/$name.md")) {
+      $content = trim(str_replace("\r","",preg_replace([
+        '/<!-- START .*? END -->/s',
+        '/<!-- DOCGEN START .*? DOCGEN END -->/s',
+        '/<!-- CHAPTER START -->.*?<!-- CHAPTER END -->/s'
+      ],'',file_get_contents($fname))));
+
+      // $content = preg_replace('/^(\d+\. )/m','# ',$content);
+      $content = preg_replace('/^(\d+\.\d+\. )/m','## ',$content);
+      $content = preg_replace('/^(\d+\.\d+\.\d+\. )/m','### ',$content);
+      $content = preg_replace('/^(\d+ )/m','# ',$content);
+      $content = preg_replace('/^(\d+\.\d+ )/m','## ',$content);
+      $content = preg_replace('/^(\d+\.\d+\.\d+ )/m','### ',$content);
+
+      $content = preg_replace('/<h1.*?>(.*?)<\/h1>/','# $1',$content);
+      $content = preg_replace('/<h2.*?>(.*?)<\/h2>/','## $1',$content);
+      $content = preg_replace('/<h3.*?>(.*?)<\/h3>/','### $1',$content);
+      $content = preg_replace('/<h4.*?>(.*?)<\/h4>/','#### $1',$content);
+      $content = preg_replace('/<img.*?src="(.*?)".*?>/','![$1]($1)',$content);
+      $content = preg_replace('/\t/','  ',$content);
+      $content = preg_replace('/<p.*?>(.*?)<\/p>/s',"$1\n\n",$content);
+      $content = preg_replace('/<br>/',"  ",$content);
+      $content = preg_replace_callback('/<ol.*?>(.*?)<\/ol>/s', function($matches) {
+        return preg_replace('/  <li.*?>(.*?)<\/li>/s',"1. $1",$matches[1]);
+      }, $content);
+      $content = preg_replace_callback('/<ul.*?>(.*?)<\/ul>/s', function($matches) {
+        return preg_replace('/  <li.*?>(.*?)<\/li>/s',"- $1",$matches[1]);
+      }, $content);
+      $content = preg_replace('/<\/.+?>|&nbsp;/','',$content);
+
+      $title = preg_replace('/.*?# /','',$content);
+      $title = preg_replace('/\n.*/','',$title);
+    } else {
+      $content = "# $title\n\n";
+    }
+
+    // $line1 = preg_replace('/.*?# .*?\n/','',$line1);
+    // array_unshift($line1,$item);
 
     $menutitle = $title;
     if ($parent) {
@@ -39,7 +78,6 @@ function doc($path, $row, $level, $i, $chapters, $parent = null) {
 
     $sidebar .= str_repeat('  ',$level)."- [$menutitle]($name)\n";
 
-    $content = "# $title\n\n";
     $chaptercontent = "## [$title]($name)\n\n";
 
     $nav = [];
@@ -49,45 +87,60 @@ function doc($path, $row, $level, $i, $chapters, $parent = null) {
     //   $content .= "<a class='up' href='$link'>$key</a>\n";
     // }
     if (isset($chapters[$i-1])) {
-      $link = str_replace(' ','-',$key = array_key_first($chapters[$i-1]));
+      $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i-1]));
       $nav[] = "<a href='$link' class='prev'><span>←</span> <small>$key</small></a>";
     }
     if (isset($chapters[$i+1])) {
-      $link = str_replace(' ','-',$key = array_key_first($chapters[$i+1]));
+      $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i+1]));
       $nav[] = "<a href='$link' class='next'><small>$key</small> <span>→</span></a>";
     }
-    if ($nav) {
-      $nav = "\n\n<!-- START -->\n<nav class='doctop'>\n".implode("\n<span> | </span>\n",$nav)."\n</nav>\n<!-- END -->";
+    foreach (['png','jpg','gif'] as $ext) {
+      if (file_exists("$path/img/$name.$ext")) {
+        // echo "$path/img/$name.png\n";
+        $img = "<!-- START -->\n\n![$title](img/$name.$ext)\n\n<!-- END -->\n\n";
+        $chaptercontent .= "[![$title](img/$name.$ext)]($name)\n";
+        break;
+      }
     }
+    if ($nav) {
+      $nav = "\n\n<!-- START --><nav class='doctop'>".implode("<span> | </span>",$nav)."</nav><!-- END -->\n\n";
+      // die($content);
+    }
+    // echo "$img\n";
+    $content = preg_replace(
+      '/^(# .*?\n)/',
+      '$1' . ($nav ? $nav : '') . $img,
+      $content
+    );
+    // $content = preg_replace(
+    //   '/^(# .*\n)/',
+    //   '$1' . ($nav ? $nav : '') . $img,
+    //   $content
+    // );
 
     // $content .= $nav;
 
-    if (file_exists("C:".$path."/img/$name.png")) {
-      $content .= "<!-- START -->\n\n![$title](img/$name.png)\n\n<!-- END -->\n\n";
-      $chaptercontent .= "[![$title](img/$name.png)]($name)\n";
-    }
-    else if (file_exists("C:".$path."/img/$name.jpg")) {
-      $content .= "<!-- START -->\n\n![$title](img/$name.jpg)\n\n<!-- END -->\n\n";
-      $chaptercontent .= "[![$title](img/$name.jpg)]($name)\n";
-    }
     foreach ($item as $i => $line) {
       if (is_string($line)) {
-        if (is_file($fname = "$path/".str_replace(' ','-',$line).".md")) {
+        // if (is_file($fname = "$path/".str_replace(' ','-',$line).".md")) {
           $item[$i] = [
             // 'a' => file_get_contents($fname),
-            $line => array_filter(explode("\n\n",str_replace("\r","",preg_replace(['/<!-- START .*? END -->/s', '/<!-- DOCGEN START .*? DOCGEN END -->/s', '/<!-- CHAPTER START -->.*?<!-- CHAPTER END -->/s'],'',file_get_contents($fname))))),
+            $line => [],//array_filter(explode("\n\n",str_replace("\r","",preg_replace(['/<!-- START .*? END -->/s', '/<!-- DOCGEN START .*? DOCGEN END -->/s', '/<!-- CHAPTER START -->.*?<!-- CHAPTER END -->/s'],'',file_get_contents($fname))))),
           ];
           // debug($fname, $i, $item);
-        }
+        // }
       }
     }
-    $content .= implode("\n\n", array_filter($item, is_string));
+
+    // $content .= implode("\n\n", array_filter($item, is_string));
+    // $content .= "\n\n";
+
     if (!empty($chapters = array_filter($item, is_array))) {
-      $content .= "\n<!-- START -->\n";
+      $content .= "\n\n<!-- START -->\n\n";
       foreach ($chapters as $i => $chapter) {
-        $content .= doc($path, $chapter, $level+1, $i, $chapters, $row)."\n\n";
+        $content .= doc($path, $chapter, $level+1, $i, $chapters, $row, $name . '-')."\n\n";
       }
-      $content .= "<!-- END -->";
+      $content .= "\n<!-- END -->";
     }
     if ($nav) {
       $content .= $nav;
@@ -99,6 +152,7 @@ function doc($path, $row, $level, $i, $chapters, $parent = null) {
     // debug($item);
     // echo "=================\n$path/$name.md\n=================\n$content\n\n";
     // die();
+    // if (is_file($fname = "$path/$name.md")) die($content);
     $old = file_get_contents($fname = "$path/$name.md");
     if ($old !== $content) {
       file_put_contents("$path/$name.md", $content);
@@ -115,6 +169,6 @@ foreach ($data as $path => $domain) {
   }
   // debug($sidebar);
   header('Content-Type: text/plain; charset=us-ascii');
-  echo $path.PHP_EOL."===============".PHP_EOL.$sidebar.PHP_EOL;
+  // echo $path.PHP_EOL."===============".PHP_EOL.$sidebar.PHP_EOL;
   file_put_contents("$path/_Sidebar.md", $sidebar);
 }
