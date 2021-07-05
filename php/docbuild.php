@@ -36,6 +36,32 @@ function doc($path, $row, $level, $i, $chapters, $parent = null, $namepath = '')
         '/<!-- DOCGEN START .*? DOCGEN END -->/s',
         '/<!-- CHAPTER START -->.*?<!-- CHAPTER END -->/s'
       ],'',file_get_contents($fname))));
+      if ($content[0]==='<') {
+        $content = preg_replace('/<\/o:p>|<o:p>/',"",$content);
+        $content = preg_replace('/<p.*?>(.*?)<\/p>/s',"$1\n\n",$content);
+        $content = preg_replace('/<\!--\[if.*?<\!\[endif\]-->/s',"",$content);
+        $content = preg_replace('/<a name=.*?>(.*?)<\/a>/s',"$1",$content);
+        $content = preg_replace('/<a.*?href="(.*?)".*?>(.*?)<\/a>/s',"[$2]($1)",$content);
+        $content = preg_replace('/<img.*?src="(.*?)".*?>/s',"![$1]($1)",$content);
+        $content = preg_replace('/<(span|div|body).*?>/s',"",$content);
+        $content = preg_replace('/<\/(span|div|body).*?>/s',"",$content);
+        $content = preg_replace('/_bestanden',"_files",$content);
+        $content = preg_replace('/\n<\!\[if \!supportLists\]>.*?<\!\[endif\]>/s',"1. ",$content);
+        // $content = preg_replace('/<span style=\'mso-no-proof:yes\'><\!--\[if.*?<\!\[endif\]-->/s',"",$content);
+        $content = preg_replace('/<\!\[if \!vml\]>(.*?)<\!\[endif\]>/s',"$1",$content);
+        $content = preg_replace('/<h1.*?>(.*?)<\/h1>/s','# $1',$content);
+        $content = preg_replace('/<h2.*?>(.*?)<\/h2>/s','## $1',$content);
+        $content = preg_replace('/<h3.*?>(.*?)<\/h3>/s','### $1',$content);
+        $content = preg_replace('/<h4.*?>(.*?)<\/h4>/s','#### $1',$content);
+        $content = preg_replace('/<img.*?src="(.*?)".*?>/','![$1]($1)',$content);
+        $content = preg_replace('/<br>/',"  ",$content);
+        $content = preg_replace_callback('/<ol.*?>(.*?)<\/ol>/s', function($matches) {
+          return preg_replace('/  <li.*?>(.*?)<\/li>/s',"1. $1",$matches[1]);
+        }, $content);
+        $content = preg_replace_callback('/<ul.*?>(.*?)<\/ul>/s', function($matches) {
+          return preg_replace('/  <li.*?>(.*?)<\/li>/s',"- $1",$matches[1]);
+        }, $content);
+      }
 
       // $content = preg_replace('/^(\d+\. )/m','# ',$content);
       $content = preg_replace('/^(\d+\.\d+\. )/m','## ',$content);
@@ -44,21 +70,10 @@ function doc($path, $row, $level, $i, $chapters, $parent = null, $namepath = '')
       $content = preg_replace('/^(\d+\.\d+ )/m','## ',$content);
       $content = preg_replace('/^(\d+\.\d+\.\d+ )/m','### ',$content);
 
-      $content = preg_replace('/<h1.*?>(.*?)<\/h1>/','# $1',$content);
-      $content = preg_replace('/<h2.*?>(.*?)<\/h2>/','## $1',$content);
-      $content = preg_replace('/<h3.*?>(.*?)<\/h3>/','### $1',$content);
-      $content = preg_replace('/<h4.*?>(.*?)<\/h4>/','#### $1',$content);
-      $content = preg_replace('/<img.*?src="(.*?)".*?>/','![$1]($1)',$content);
       $content = preg_replace('/\t/','  ',$content);
-      $content = preg_replace('/<p.*?>(.*?)<\/p>/s',"$1\n\n",$content);
-      $content = preg_replace('/<br>/',"  ",$content);
-      $content = preg_replace_callback('/<ol.*?>(.*?)<\/ol>/s', function($matches) {
-        return preg_replace('/  <li.*?>(.*?)<\/li>/s',"1. $1",$matches[1]);
-      }, $content);
-      $content = preg_replace_callback('/<ul.*?>(.*?)<\/ul>/s', function($matches) {
-        return preg_replace('/  <li.*?>(.*?)<\/li>/s',"- $1",$matches[1]);
-      }, $content);
-      $content = preg_replace('/<\/.+?>|&nbsp;/','',$content);
+      // $content = preg_replace('/<\!\[if.*?<\!\[endif\]>/s',"",$content);
+      $content = preg_replace('/&nbsp;/','',$content);
+
 
       $title = preg_replace('/.*?# /','',$content);
       $title = preg_replace('/\n.*/','',$title);
@@ -86,26 +101,26 @@ function doc($path, $row, $level, $i, $chapters, $parent = null, $namepath = '')
     //   $link = str_replace(' ','-',$key = array_key_first($parent));
     //   $content .= "<a class='up' href='$link'>$key</a>\n";
     // }
-    if (isset($chapters[$i-1])) {
-      $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i-1]));
-      $nav[] = "<a href='$link' class='prev'><span>←</span> <small>$key</small></a>";
-    }
-    if (isset($chapters[$i+1])) {
-      $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i+1]));
-      $nav[] = "<a href='$link' class='next'><small>$key</small> <span>→</span></a>";
-    }
+    // if (isset($chapters[$i-1])) {
+    //   $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i-1]));
+    //   $nav[] = "<a href='$link' class='prev'><span>←</span> <small>$key</small></a>";
+    // }
+    // if (isset($chapters[$i+1])) {
+    //   $link = $namepath . str_replace(' ','-',$key = array_key_first($chapters[$i+1]));
+    //   $nav[] = "<a href='$link' class='next'><small>$key</small> <span>→</span></a>";
+    // }
     foreach (['png','jpg','gif'] as $ext) {
       if (file_exists("$path/img/$name.$ext")) {
         // echo "$path/img/$name.png\n";
-        $img = "<!-- START -->\n\n![$title](img/$name.$ext)\n\n<!-- END -->\n\n";
+        // $img = "<!-- START -->\n\n![$title](img/$name.$ext)\n\n<!-- END -->\n\n";
         $chaptercontent .= "[![$title](img/$name.$ext)]($name)\n";
         break;
       }
     }
-    if ($nav) {
-      $nav = "\n\n<!-- START --><nav class='doctop'>".implode("<span> | </span>",$nav)."</nav><!-- END -->\n\n";
-      // die($content);
-    }
+    // if ($nav) {
+    //   $nav = "\n\n<!-- START --><nav class='doctop'>".implode("<span> | </span>",$nav)."</nav><!-- END -->\n\n";
+    //   // die($content);
+    // }
     // echo "$img\n";
     $content = preg_replace(
       '/^(# .*?\n)/',
@@ -136,11 +151,12 @@ function doc($path, $row, $level, $i, $chapters, $parent = null, $namepath = '')
     // $content .= "\n\n";
 
     if (!empty($chapters = array_filter($item, is_array))) {
-      $content .= "\n\n<!-- START -->\n\n";
+      // $content .= "\n\n<!-- START -->\n\n";
       foreach ($chapters as $i => $chapter) {
-        $content .= doc($path, $chapter, $level+1, $i, $chapters, $row, $name . '-')."\n\n";
+        // $content .= doc($path, $chapter, $level+1, $i, $chapters, $row, $name . '-')."\n\n";
+        doc($path, $chapter, $level+1, $i, $chapters, $row, $name . '-')."\n\n";
       }
-      $content .= "\n<!-- END -->";
+      // $content .= "\n<!-- END -->";
     }
     if ($nav) {
       $content .= $nav;

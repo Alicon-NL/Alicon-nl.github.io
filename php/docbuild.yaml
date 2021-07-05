@@ -1,3 +1,68 @@
+/aliconnect/node_modules/@aliconnect/sdk/wiki:
+  - Home:
+    # - Setup:
+    #   - Windows:
+    #     - Server:
+    #       - '2012'
+    - Learn:
+      - AIM:
+        - Mastering the URL
+      - Coding:
+        - Naming conventions
+        - Inline documentation
+      - Javascript:
+        - JSON
+        - JWT
+      - HTTP:
+        - Error codes
+      - OData:
+        - Basics
+        - JSON Format
+        - Object ID Definition
+        - Protocol:
+          - Details
+        - URL Conventions
+      - Open API Specification
+      - Open SSL
+      - RegEx
+      - Wiki Write document
+      - Documentatie schrijven
+    - Develop:
+      # - Get started
+      - Javascript:
+        - Login
+        - Form Input Draw
+        - Notification
+        - PDF to TXT
+      - PHP:
+        - SOAP
+      - Service:
+        - Mailer
+        - Printer
+      - Mobile webapp
+    - Setup:
+      - Windows:
+        - Office:
+          - Word-Webapp
+        - Workstation:
+          - Developer
+        - Server:
+          - IIS
+          - SQL
+          - '2012'
+          - Web.config
+          - SSL
+          - FTP
+          - SNMP
+          - Auto start application
+          - Automatic reboot and reload
+        - Symbolic Links
+        - Automatic reboot and reload
+        - Auto start application
+      # - Authentication
+      # - Firefox
+      # - Systeem configuratie
+      # - Tutorial
 /aliconnect/webroot/sites/alicon/wiki:
   - Home:
     - Process Development
@@ -78,62 +143,3 @@
       - YAML Basics
       - Markdown
     - Develop
-/aliconnect/node_modules/@aliconnect/sdk/wiki:
-  - Home:
-    - Learn:
-      - AIM:
-        - Mastering the URL
-      - Coding:
-        - Naming conventions
-        - Inline documentation
-      - Javascript:
-        - JSON
-        - JWT
-      - HTTP:
-        - Error codes
-      - OData:
-        - Basics
-        - JSON Format
-        - Object ID Definition
-        - Protocol:
-          - Details
-        - URL Conventions
-      - Open API Specification
-      - Open SSL
-      - RegEx
-      - Wiki Write document
-      - Documentatie schrijven
-    - Develop:
-      # - Get started
-      - Javascript:
-        - Login
-        - Form Input Draw
-        - Notification
-        - PDF to TXT
-      - PHP:
-        - SOAP
-      - Service:
-        - Mailer
-        - Printer
-      - Mobile webapp
-    - Setup:
-      - Windows:
-        - Office:
-          - Word-Webapp
-        - Workstation:
-          - Developer
-        - Server:
-          - IIS
-          - Web.config
-          - SSL
-          - FTP
-          - SNMP
-          - Auto start application
-          - Automatic reboot and reload
-        - Symbolic Links
-        - Automatic reboot and reload
-        - Auto start application
-      # - Authentication
-      # - Firefox
-      # - Systeem configuratie
-      # - Tutorial
