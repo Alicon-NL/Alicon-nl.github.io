@@ -1,0 +1,105 @@
+- Explore
+  - Legal
+    - [Account Management](Account-management)
+    - [Gebruikersvoorwaarden](Explore-Legal-Terms-of-use)
+    - [Privacy beleid](Explore-Legal-Privacy-policy)
+    - [Cookie beleid](Explore-Legal-Cookie-policy)
+    - [Copyright beleid](Explore-Legal-Copyright-policy)
+  - Tutorials
+    - [Javascript Get Sarted](/aliconnect/training-javascript-get-started-nl/blob/main/README.md)
+    - [Javascript SPA](/aliconnect/training-javascript-spa/tutorial/blob/main/01-intro.md)
+      - [Create a single-page app](/aliconnect/training-javascript-spa/tutorial/blob/main/02-create-app.md)
+      - [Register the app in the portal](/aliconnect/training-javascript-spa/tutorial/blob/main/03-register-app.md)
+      - [Add Aliconnect Authentication](/aliconnect/training-javascript-spa/tutorial/blob/main/04-add-auth.md)
+      - [Get a contact list](/aliconnect/training-javascript-spa/tutorial/blob/main/05-add-aim.md)
+      - [Create a new Contact](/aliconnect/training-javascript-spa/tutorial/blob/main/05-create-contact.md)
+      - [Change Contact Prperties](/aliconnect/training-javascript-spa/tutorial/blob/main/06-change-contact-properties.md)
+      - [Congratulations](aliconnect/training-javascript-spa/tutorial/blob/main/07-completed.md)
+  - Overview
+    - [Product overzicht](Explore-Overview-Product)
+    - [Authenticatie](Explore-Overview-Authentication)
+  - Whats new
+    - [Modifications](Archive-Modifications)
+    - [Roadmap](Explore-Roadmap)
+    - [Change Log](Explore-Changelog)
+    - [TODO](Explore-Development-issues)
+- Learn
+  - Config
+    - [Get Started](Learn-Config-Get-started)
+    - Schema
+      - [Item](Learn-Config-Schema-Item)
+      - [Folder](Learn-Config-Schema-Folder)
+      - [Contact](Learn-Config-Schema-Contact)
+      - [Company](Learn-Config-Schema-Company)
+      - [Config Enterprise](Learn-Config-Schema-Enterprise)
+      - [Site](Learn-Config-Schema-Site)
+      - [Config Area](Learn-Config-Schema-Area)
+      - [ProcessCell](Learn-Config-Schema-ProcessCell)
+      - [Unit](Learn-Config-Schema-Unit)
+      - [EquipmentModule](Learn-Config-Schema-EquipmentModule)
+      - [ControlModule](Learn-Config-Schema-ControlModule)
+      - [Control](Learn-Config-Schema-Control)
+      - [ControlIO](Learn-Config-Schema-ControlIO)
+      - [Device](Learn-Config-Schema-Device)
+      - [Attribute](Learn-Config-Schema-Attribute)
+    - Import
+      - [Create Excel web API import](Learn-Config-Import-Excel)
+    - Control
+      - [YAML Rule Configuration](Learn-Config-Control-Rules)
+  - [YAML Basics](Learn-YAML-Basics)
+  - [Markdown](Learn-Markdown)
+  - AIM
+    - [Mastering the URL](Learn-AIM-Mastering-the-URL)
+  - Coding
+    - [Naming conventions](Learn-Coding-Naming-conventions)
+    - [Inline Documentation Standards](Learn-Coding-Inline-documentation)
+  - Javascript
+    - [JSON Object Notation Schema getting started](Learn-Javascript-JSON)
+    - [JSON Web Token JWT](Learn-Javascript-JWT)
+  - HTTP
+    - [Response codes](Learn-HTTP-Error-codes)
+  - OData
+    - [Basic Tutorial](Learn-OData-Basics)
+    - [JSON Format](Learn-OData-JSON-Format)
+    - [Object ID definition](Learn-OData-Object-ID-Definition)
+    - [Protocol](Learn-OData-Protocol)
+      - [OData Details](Learn-OData-Protocol-Details)
+    - [URL Conventions](Learn-OData-URL-Conventions)
+  - [Open API Specification 3.0](Learn-Open-API-Specification)
+  - [Open SSL](Learn-Open-SSL)
+  - [Regex](Learn-RegEx)
+  - [How to write wiki documenten](Learn-Wiki-Write-document)
+  - [Hoe schrijf je documentatie](Learn-Documentatie-schrijven)
+- Develop
+  - Javascript
+    - [Login Local](Develop-Javascript-Login)
+    - [Form Input Draw](Develop-Javascript-Form-Input-Draw)
+    - [Develop Notification](Develop-Javascript-Notification)
+    - [PDF 2 TEXT](Develop-Javascript-PDF-to-TXT)
+  - PHP
+    - [SOAP](Develop-PHP-SOAP)
+  - Services
+    - [Cloud Mailer](Develop-Service-Mailer)
+    - [Cloud Printer](Develop-Service-Printer)
+  - [Hoe maak ik de app installeerbaar](Develop-Mobile-webapp)
+  - Setup
+    - [Project directory structure](Setup-Project-directory-structure)
+    - [Developer Workstation](Setup-Windows-Workstation-Developer)
+      - [Station](Setup-Windows-Workstation-Developer-Station)
+      - [Core](Setup-Windows-Workstation-Developer-Core)
+    - Windows
+      - [Office](Setup-Windows-Office)
+        - [Create Word web add-in](Setup-Windows-Office-Word-Webapp)
+      - Workstation
+        - [Developer](Setup-Windows-Workstation-Developer)
+      - Server
+        - [IIS PHP](Setup-Windows-Server-IIS)
+        - [SQL](Setup-Windows-Server-SQL)
+        - [2012](Setup-Windows-Server-2012)
+        - [Web.config](Setup-Windows-Server-Web.config)
+        - [AimNode SSL](Setup-Windows-Server-SSL)
+        - [FTP](Setup-Windows-Server-FTP)
+        - [SNMP](Setup-Windows-Server-SNMP)
+        - [Auto start application](Setup-Windows-Auto-start-application)
+        - [Automatic reboot and reload](Setup-Windows-Automatic-reboot-and-reload)
+      - [Symbolic Links](Setup-Windows-Symbolic-Links)

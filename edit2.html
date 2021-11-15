@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#000000">
+  <!-- <link href="https://aliconnect.nl/sdk/dist/font/aliconnect-icon.css" rel="stylesheet" /> -->
+  <!-- <link href="https://aliconnect.nl/sdk/src/css/web.css" rel="stylesheet" /> -->
+  <script src="https://aliconnect.nl/sdk/src/js/aim.js" client_id="cac652da-dcdc-455a-a0de-e32bac08ea06"></script>
+  <script src="https://aliconnect.nl/sdk/src/js/web.js" libraries="edit"></script>
+  <script src="https://aliconnect.nl/sdk/dist/js/jszip.js"></script>
+  <script src="https://aliconnect.nl/sdk/dist/js/xlsx.js"></script>
+
+  <!-- <link href="https://aliconnect.github.io/aliconnect.sdk/dist/font/aliconnect-icon.css" rel="stylesheet" />
+  <link href="https://aliconnect.github.io/aliconnect.sdk/src/css/web.css" rel="stylesheet" />
+  <script src="https://aliconnect.github.io/aliconnect.sdk/src/js/aim.js" client_id="cac652da-dcdc-455a-a0de-e32bac08ea06"></script>
+  <script src="https://aliconnect.github.io/aliconnect.sdk/src/js/web.js" libraries="sw,init,page"></script>
+  <script src="https://aliconnect.github.io/aliconnect.sdk/dist/js/jszip.js"></script>
+  <script src="https://aliconnect.github.io/aliconnect.sdk/dist/js/xlsx.js"></script> -->
+
+  <title>Alicon</title>
+  <link href="/manifest.json" rel="manifest" crossorigin="anonymous">
+  <link href="/assets/img/favicon.png" rel="icon" type="image/png" />
+  <link href="/assets/img/apple-touch-icon-180x180.png" rel="apple-touch-icon" />
+  <link href="/assets/img/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180" />
+  <link href="/assets/img/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120" />
+  <link href="/assets/img/apple-touch-icon-167x167.png" rel="apple-touch-icon" sizes="167x167" />
+  <link href="/assets/img/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152" />
+  <!-- <link href="/assets/css/alicon.css" rel="stylesheet" /> -->
+  <script src="/assets/js/alicon.js"></script>
+</head>
+<style>
+table {width:100%;}
+@media print {
+  tfoot>tr {
+    counter-increment: page;
+    height:30mm;
+  }
+  tfoot>tr {height:20mm;}
+  tfoot div {
+    position:fixed;
+    bottom:0;
+  }
+  tfoot div:after {
+    counter-increment: page;
+    content: 'page' counter(page);
+  }
+  .docfooter {
+    position:absolute;
+    bottom:0;
+    background:red;
+  }
+}
+</style>
+<body>
+  <table>
+    <thead><tr><td>Page header</td></tr></thead>
+    <tbody>
+      <tr><td>
+        <p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p><p>-</p>
+      </td></tr>
+      <tr><td><div style='position:absolute;bottom:10mm;'>LAST PAGE</div></td></tr>
+    </tbody>
+    <tfoot><tr><td></td></tr></tfoot>
+  </table>
+  <footer style='position:fixed;bottom:0;'>Doc footer</footer>
+</body>
+</html>

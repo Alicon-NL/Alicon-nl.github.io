@@ -1,0 +1,45 @@
+body{
+  font-family: "helvetica";
+}
+.letter-from {
+  /* float: right; */
+  position:absolute;
+  top: -10mm;
+  right:0;
+  text-align: right;
+}
+.letter-to {
+  margin-top: 10mm;
+  height: 40mm;
+}
+
+.pagenum:before {
+  content: counter(page);
+}
+@page {
+  margin: 20mm 10mm 20mm 20mm;
+  /* margin: 100px 25px; */
+}
+header {
+  position: fixed;
+  top: -10mm;
+  left: 0px;
+  right: 0px;
+  /* height: 10mm; */
+  /* background:red; */
+}
+
+footer {
+  position: fixed;
+  bottom: -10mm;
+  left: 0px;
+  right: 0px;
+  /* height: 10mm; */
+  /* background:red; */
+  text-align: right;
+  border-top: solid 1px #ccc;
+}
+th {
+  font-size: 0.9em;
+  text-align: left;
+}

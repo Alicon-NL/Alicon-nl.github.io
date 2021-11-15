@@ -1,0 +1,11 @@
+div.message{
+  position:fixed;
+  margin:auto;
+  max-width: 1200px;
+  padding:10px;
+  bottom:0;
+  left:0;right:0;
+  background-color: #FFFBE5;
+  font-family: monospace;
+  white-space: pre;
+}

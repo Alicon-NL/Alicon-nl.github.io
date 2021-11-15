@@ -1,0 +1,21 @@
+- **General**
+    - E: info@alicon.nl
+    - T: +31 (0)26 3390790
+    - **Sales**
+        - Max van Kampen
+        - E: max.van.kampen@alicon.nl
+        - M: +31 (0)6 200 68 073
+    - **Support**
+        - E: support@alicon.nl
+        - T: +31 (0)26 3390790
+    - **Administration**
+        - E: administratie@alicon.nl
+        - T: +31 (0)26 3390790
+- **Visiting address**
+        - Alicon
+        - Klingelbeekseweg 67
+        - 6862 VS Oosterbeek
+    - **Postal address**
+        - Alicon Projects BV
+        - Geelkerkenkamp 14 A
+        - 6862 ER Oosterbeek
