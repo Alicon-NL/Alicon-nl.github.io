@@ -15,16 +15,16 @@ Introductie over de automation integration Manager
 
 # 7S Organisatie Model McKinsey
 
-![7S Organisatie Model McKinsey](img/mckinsey-7s.png)
+![7S Organisatie Model McKinsey](/assets/img/mckinsey-7s.png)
 
 # ISA-95 Levels of Automation
 
-![ISA-95 Level of Automation](img/isa95-levels-of-automation.png)
+![ISA-95 Level of Automation](/assets/img/isa95-levels-of-automation.png)
 
 # ISA-95 Control levels of Automation
 
-![ISA-95 Level of Automation](img/isa95-control-levels-of-automation.png)
+![ISA-95 Level of Automation](/assets/img/isa95-control-levels-of-automation.png)
 
 # ISA-95 Manufacturing Operations Activities
 
-[![ISA-95 Manufacturing Operations Activities](img/isa95-manufacturing-operations-activities.png)](wiki/isa95-manufacturing-operations-activities)
+[![ISA-95 Manufacturing Operations Activities](/assets/img/isa95-manufacturing-operations-activities.png)](wiki/isa95-manufacturing-operations-activities)
