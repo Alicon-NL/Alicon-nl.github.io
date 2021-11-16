@@ -1,5 +1,4 @@
 (function (){
-
   eol = '\n';
   const tagnames = ['a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b', 'base', 'bdi', 'bdo', 'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'div', 'dl', 'dt', 'em', 'embed', 'fieldset', 'figcaption', 'figure', 'footer', 'form', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hgroup', 'hr', 'html', 'i', 'iframe', 'frameset', 'frame', 'img', 'input', 'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'menu', 'meta', 'meter', 'nav', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture', 'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'slot', 'small', 'source', 'span', 'strong', 'style', 'sub', 'summary', 'sup', 'table', 'tbody', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul', 'var', 'video', 'wbr', ];
 
@@ -756,7 +755,7 @@
         client_id: client_id,
         scope: 'openid profile name email',
       };
-      const aimClient = new aim.PublicClientApplication(aimConfig);
+      const aimClient = new aim.UserAgentApplication(aimConfig);
       // aimClient.storage.clear();
       const aimRequest = {
         scopes: aimConfig.scope.split(' '),
@@ -797,10 +796,10 @@
       };
       let dmsConfig = {
         client_id: client_id,
-        servers: [{url: aim.config.url || 'https://dms1.aliconnect.nl/api'}],
+        servers: [{url: 'https://aliconnect.nl'}],
       };
-      const dmsClient = aim.dataClient = aim.Client.initWithMiddleware({authProvider}, dmsConfig);
-      dmsConfig = await dmsClient.loadConfig();
+      const dmsClient = aim.Client.initWithMiddleware({authProvider}, dmsConfig);
+      // dmsConfig = await dmsClient.loadConfig();
       function signOut() {
         aimClient.storage.removeItem('aimAccount');
         aimClient.logout().catch(console.error).then(e => document.location.reload());
@@ -1014,7 +1013,7 @@
         ['/nav-top.md', '.pagemenu'],
         ['/footer.md', 'body>footer>article'],
       ].forEach(([filename, selector]) => {
-        aim.fetch(filename, {}).then(res => res.status !== 200 ? null : res.text().then(body => {
+        aim.fetch(filename).then(res => res.status !== 200 ? null : res.text().then(body => {
           $(selector).html(aim.markdown().render(body));
         }));
       })
@@ -1041,6 +1040,652 @@
     page404(){
       console.log(404);
     },
+    // async om() {
+    //   console.log('configLocal', aim.configLocal);
+    //   aim.readOnly = false;
+    //   const client_id = aim.config.client_id;
+    //   const aimConfig = {
+    //     client_id: client_id,
+    //     scope: 'openid profile name email admin.write abisingen.write',
+    //   };
+    //   const aimClient = new aim.UserAgentApplication(aimConfig);
+    //   // aimClient.storage.clear();
+    //
+    //   const aimRequest = {
+    //     scopes: aimConfig.scope.split(' '),
+    //   };
+    //   // const access_token = await aim.api('/abis/signin').input(aimConfig).post().then(e => e.text());
+    //   // aimClient.storage.setItem('accessToken', access_token);
+    //
+    //   const aimAccount = aimClient.storage.getItem('aimAccount') ? JSON.parse(aimClient.storage.getItem('aimAccount')) : null;
+    //   const authProvider = {
+    //     getAccessToken: async () => {
+    //       return aimClient.storage.getItem('accessToken');
+    //       let account = aimClient.storage.getItem('aimAccount');
+    //       if (!account){
+    //         throw new Error(
+    //           'User account missing from session. Please sign out and sign in again.'
+    //         );
+    //       }
+    //       try {
+    //         // First, attempt to get the token silently
+    //         const silentRequest = {
+    //           scopes: aimRequest.scopes,
+    //           account: aimClient.getAccountByUsername(account)
+    //         };
+    //         const silentResult = await aimClient.acquireTokenSilent(silentRequest);
+    //         return silentResult.accessToken;
+    //       } catch (silentError) {
+    //         // If silent requests fails with InteractionRequiredAuthError,
+    //         // attempt to get the token interactively
+    //         if (silentError instanceof aim.InteractionRequiredAuthError) {
+    //           const interactiveResult = await aimClient.acquireTokenPopup(aimRequest);
+    //           return interactiveResult.accessToken;
+    //         } else {
+    //           throw silentError;
+    //         }
+    //       }
+    //     }
+    //   };
+    //   let dmsConfig = {
+    //     client_id: client_id,
+    //     servers: [{url: 'https://aliconnect.nl'}],
+    //   };
+    //   const dmsClient = aim.Client.initWithMiddleware({authProvider}, dmsConfig);
+    //   // dmsConfig = await dmsClient.loadConfig();
+    //
+    //   function signOut() {
+    //     aimClient.storage.removeItem('aimAccount');
+    //     aimClient.logout().catch(console.error).then(e => document.location.reload());
+    //   }
+    //   function signIn() {
+    //     aimClient.loginPopup(aimRequest).then(authResult => {
+    //       aimClient.storage.setItem('aimAccount', authResult.account.username);
+    //       document.location.reload();
+    //     })
+    //   }
+    //
+    //
+    //   $(document.documentElement).class('app');
+    //   $(document.body).append(
+    //     $('nav').append(
+    //       $('a').class('abtn icn menu').on('click', e => {
+    //         this.asideLeft.elem.style.left = 0;
+    //         // style(!this.asideLeft.style() ? "left:0;" : "");
+    //         // if ($.his.elem.menuList && $.his.elem.menuList.style()) {
+    //         //   $.his.elem.menuList.style('');
+    //         // } else {
+    //         //   if ($.his.elem.menuList) $.his.elem.menuList.style('display:none;');
+    //         //   $(document.body).attr('tv', document.body.hasAttribute('tv') ? $(document.body).attr('tv')^1 : 0)
+    //         // }
+    //       }),
+    //       $('a').class('title').id('toptitle').on('click', e => $.start() ),
+    //       $('form').class('search row aco')
+    //       .on('submit', e => {
+    //         document.location.hash = '?$search='+e.target.search.value;
+    //         return false;
+    //         e.preventDefault();
+    //         const url = new URL(document.location);
+    //         const listRef = url.searchParams.get('l');
+    //         if (!listRef) return;
+    //         console.log(aim.idToUrl(listRef));
+    //         const listUrl = new URL(aim.idToUrl(listRef), document.location);
+    //         listUrl.searchParams.set('$search', e.target.search.value);
+    //         // console.log(listRef,listUrl.toString());
+    //         document.location.hash = '#?l='+aim.urlToId(listUrl.toString());
+    //         return false;
+    //         const value = $.searchValue = e.target.search.value;
+    //         var result = value
+    //         ? [...$.props.values()]
+    //         .filter(item => item instanceof Item)
+    //         .unique()
+    //         .filter(item => item.header0 && value.split(' ').every(value => [item.header0,item.name].join(' ').match(new RegExp(`\\b${value}\\b`, 'i'))))
+    //         : [];
+    //         $().list(result);
+    //         return false;
+    //       })
+    //       .append(
+    //         $('input').name('search').autocomplete('off').placeholder('zoeken'),
+    //         $('button').class('abtn icn search fr').title('Zoeken'),
+    //       ),
+    //       $('button').class('abtn dark').dark(),//on('click', e => $(document.documentElement).attr('dark', aim.dark ^= 1)),
+    //       $('button').class('abtn account').text(aimAccount ? aimAccount.sub : '').append(
+    //         $('div').append(
+    //           aimAccount
+    //           ? [
+    //             $('button').text('afmelden').on('click', signOut),
+    //           ]
+    //           : [
+    //             $('button').text('aanmelden').on('click', signIn),
+    //           ]
+    //         )
+    //       ),
+    //     ),
+    //     $('main').append(
+    //       $('div').class('col tv left noselect np')
+    //       .css('min-width', $().storage('tree.width') || '200px')
+    //       .on('click', e => {
+    //         // this.asideLeft.elem.style.left = null;
+    //       })
+    //       .append(
+    //         $('nav').class('btnbar np').append(
+    //           $('button').class('abtn r popout').on('click', e => {
+    //             var url = document.location.origin;
+    //             // var url = 'about:blank';
+    //             const rect = this.elem.getBoundingClientRect();
+    //             console.log(this.win);
+    //             if (this.win) {
+    //               console.log(this.win);
+    //               return this.win.focus();
+    //             }
+    //             const win = this.win = window.open(url, null, `top=${window.screenTop},left=${window.screenLeft+document.body.clientWidth-rect.width},width=${rect.width},height=${rect.height}`);
+    //             window.addEventListener('beforeunload', e => win.close());
+    //             const doc = this.win.document;
+    //             doc.open();
+    //             doc.write(pageHtml);
+    //             doc.close();
+    //             const aim = $;
+    //             win.onload = function (e) {
+    //               const $ = this.$;
+    //               const document = win.document;
+    //               $(document.documentElement).class('app');
+    //               $(document.body).class('col aim om bg').id('body').append(
+    //                 // $('section').class('row aco main').id('section_main').append(
+    //                 $('section').tree().class('aco').style('max-width:auto;'),
+    //                 // ),
+    //                 $('footer').statusbar(),
+    //               );
+    //               (async function () {
+    //                 await $().translate();
+    //                 await $().getApi(document.location.origin+'/api/');
+    //                 await $().login();
+    //                 if (aim().menuChildren) {
+    //                   $().tree(...aim().menuChildren);
+    //                 }
+    //                 // await $(`/Contact(${aimClient.sub})`).details().then(item => $().tree($.user = item));
+    //                 // console.log(aim.user.data);
+    //                 $().tree(aim.user.data);
+    //               })()
+    //             }
+    //           }),
+    //           $('button').class('abtn pin').on('click', e => {
+    //             $(document.body).attr('tv', $(document.body).attr('tv') ? null : 0);
+    //           }),
+    //           // $('button', 'abtn icn close'),
+    //         ),
+    //         $('div').class('oa list'),
+    //       ),
+    //       // .contextmenu(this.menu)
+    //       $('div').seperator(),
+    //       $('div').class('col lv'),
+    //       $('div').class('col dv'),
+    //       $('div').seperator('right'),
+    //       $('div').class('col pv').css('max-width', $().storage('view.width') || '700px').append(
+    //         // $('iframe').name('page').style('height: 100%;')
+    //       ),
+    //       // $('div').id('preview'),
+    //       $('div').class('prompt'),
+    //       // $('div').class('prompt').tabindex(-1).append(
+    //       //   $('button').class('abtn abs close').attr('open', '').tabindex(-1).on('click', e => aim.prompt(''))
+    //       // ),
+    //     ),
+    //     $('footer').append(
+    //       $('span').class('ws'),
+    //       $('span').class('aliconnector'),
+    //       $('span').class('http'),
+    //       $('span').class('is_chekced'),
+    //       $('span').class('clipboard'),
+    //       $('span').class('pos'),
+    //       $('span').class('source'),
+    //       $('span').class('target'),
+    //       $('span').class('main aco'),
+    //       $('progress'),
+    //     ),
+    //   ).messagesPanel();
+    //
+    //   aim.om = new Om();
+    //
+    //   // $(window).on('popstate', e => {
+    //   //   console.log(aim.searchParams);
+    //   //   const searchParams = new URLSearchParams(document.location.search);
+    //   //   const names = [
+    //   //     { name: 'id', onchange: value => value ? page(atob(value)) : $('.pv').text('') },
+    //   //   ];
+    //   //   names.forEach(par => {
+    //   //     if (!aim.searchParams || aim.searchParams.get(par.name) !== searchParams.get(par.name)) {
+    //   //       par.onchange(searchParams.get(par.name));
+    //   //     }
+    //   //   })
+    //   //   aim.searchParams = searchParams;
+    //   // })
+    // },
+    async md(){
+      // console.log(document.location.pathname);
+      const data = document.querySelector('data') ? JSON.parse(atob(document.querySelector('data').getAttribute('md'))) : {
+        md: await fetch(document.location.pathname === '/' ? '/page/Home.md' : '/page'+document.location.pathname+'.md').then(res => res.text()),
+      };
+      let body = data.md;
+      // console.log(body);
+      const lastModified = '';
+      $("body>header>article").text('').append(
+        $('h1').text(document.title),
+        // $('time').text('Laatst gewijzigd', lastModified.toLocaleDateString(), lastModified.toLocaleTimeString()),
+      );
+
+      $("section.doc-content>article").text('').append(aim.markdown().render(body));//.renderCode(e.target.responseURL);
+      $("aside.right").index("section.doc-content>article");
+
+      if (document.location.hash) {
+        const hash = document.location.hash.substr(1);
+        const anchor = (document.getElementsByName(hash)||[])[0];
+        anchor.scrollIntoView({ block: "nearest", inline: "nearest" });
+      }
+
+      async function render(){
+        if (sessionStorage.getItem('password')) {
+          const config = await fetch('myconfig.php?password='+sessionStorage.getItem('password')).then(res => res.json());
+          (function rep(cfg, path){
+            Object.entries(cfg).forEach(([key,value]) => {
+              if (typeof value === 'object') {
+                rep(value, path.concat(key));
+              } else {
+                body = body.replace(`{${path.concat(key).join('.')}}`, `<span title="${value}">{${path.concat(key).join('.')}}</span>`);
+              }
+            });
+          })(config, []);
+          $(".doc-content").text('').append(aim.markdown().render(body));//.renderCode(e.target.responseURL);
+        }
+      }
+      function mdSignin(el){
+        sessionStorage.setItem('password', el.value);
+        render();
+      }
+      render();
+      // load(document.location.pathname);
+      // $().url('/api/Aim/Tools/Dir').query('fn', document.location.pathname).get().then(e => {
+      //   const folders = {};
+      //   const filename = document.location.pathname.split('/').pop();
+      //   // console.log(filename);
+      //
+      //   e.body
+      //   .filter(name => !name.match(/^\.|^_/))
+      //   .filter(name => name.match(/\.md$/))
+      //   .map(name => name.replace(/\.md$/, ''))
+      //   // .map(name => Object({name: name, path: name.split(/-(?=[A-Z])/)}))
+      //   .forEach(name => {
+      //     var elem = $("doc-list");
+      //     var link;
+      //     name.split(/-(?=[A-Z])/).forEach(folder => {
+      //       elem = elem[folder] = elem[folder] || $('ul').parent($('li').parent(elem).append($('a').attr('open', '0').text(folder)));
+      //     });
+      //     var link = elem.parentElement.children[0].href(name);
+      //     if (name === filename) {
+      //       for (var link; link; link = link.parentElement.parentElement.parentElement.children[0]) {
+      //         link.attr('open', 1);
+      //         if (!link.parentElement.parentElement.parentElement) break;
+      //       }
+      //     }
+      //     // name = name.split(/-(?=[A-Z])/);
+      //     // console.log(elem, name);
+      //   })
+      //   // console.log(e.body);
+      //   // $("doc-list").append(
+      //   //   e.body.map(name => $('li').append(
+      //   //     $('a').href(name = name.replace(/\.md$/,'')).text(name.replace(/-/g, ' ')),
+      //   //   ))
+      //   // );
+      //   // console.log(e.body);
+      // });
+      $(window).on('click', e => {
+        if (e.target && e.target.hasAttribute('open')) {
+          e.target.setAttribute('open', e.target.getAttribute('open') ^1)
+        }
+      })
+      .on('popstate', e => {
+        if (document.location.hash) {
+          const el = document.querySelector(`a[name="${document.location.hash.substr(1)}"]`);
+          if (el) el.scrollIntoView(true);
+        } else {
+          window.scrollTo(0,0);
+        }
+      })
+      // $.initEvents();
+
+    },
+    // async abis(){
+    //   aim.readOnly = false;
+    //   await libraries.om();
+    //   function listLink(title, request_type, filter){
+    //     var schema = config.components.schemas[request_type];
+    //     var href = `https://aliconnect.nl/api/abis/data?request_type=${request_type}&$select=${schema.select}&$filter=${filter}`;
+    //     href = href.replace(/ /g,'+');
+    //     // var href = $().url(href).query(options).toString();
+    //     // console.log(href);
+    //     href = aim.urlToId(href);
+    //     // console.log(href);
+    //     href = '#?l='+href;
+    //     // console.log(href);
+    //     return $('a').text(title).href(href);
+    //   }
+    //   function page(schemaname, id){
+    //     schema = config.components.schemas[schemaname];
+    //     // console.log('page', schema, id);
+    //     aim.api('/abis/data').query({
+    //       request_type: schemaName,
+    //       id: id,
+    //     }).get().then(async res => {
+    //       const data = await res.json();
+    //       console.log(data);
+    //       $('section.page').pageForm(schema, data);
+    //     });
+    //
+    //   }
+    //   function pageLink(title, schema, id){
+    //   //   var schema = config.components.schemas[request_type];
+    //   //   var href = `https://aliconnect.nl/abis/data?request_type=${request_type}&$select=${schema.select}&$filter=${filter}`;
+    //   //   href = href.replace(/ /g,'+');
+    //   //   // var href = $().url(href).query(options).toString();
+    //   //   // console.log(href);
+    //   //   href = aim.urlToId(href);
+    //   //   // console.log(href);
+    //   //   href = '#?l='+href;
+    //   //   // console.log(href);
+    //     return $('button').text(title).on('click', e => {
+    //       page(schema, id);
+    //     });
+    //   }
+    //   function link(title, href){
+    //     // aim.idToUrl(url.searchParams.get('l'));
+    //     return $('a').text(title).href(href)
+    //   }
+    //   function listRef(selector, par = ''){
+    //     // console.log(oas);
+    //     if (selector) {
+    //       const schema = oas.components.schemas[selector];
+    //       const select = Object.keys(schema.properties).join(',');
+    //       const href = apiUrl+listPath+`?request_type=${selector}&select=${select}&order=${schema.order}`+par;
+    //       // console.log(href);
+    //       return `#?l=${aim.urlToId(href)}`;
+    //     }
+    //   }
+    //
+    //   // const configYaml = await fetch('../config/config.yaml').then(res => res.text());
+    //   // // console.log(configYaml);
+    //   // config = await fetch('https://aliconnect.nl/yaml.php', {
+    //   //   method: 'POST',
+    //   //   body: configYaml,
+    //   // }).then(res => res.json());
+    //   console.log(1,aim.config.client_id);
+    //
+    //
+    //   const url = new URL(document.location);
+    //   const showlist = {
+    //     async products(data) {
+    //       // console.log(data);
+    //       cols = [
+    //         { name: 'productTitle', title: 'Titel'},
+    //         { name: 'supplier', title: 'Leverancier'},
+    //         { name: 'brand', title: 'brand'},
+    //         { name: 'productGroup', title: 'productGroup'},
+    //         { name: 'description', title: 'description'},
+    //         { name: 'ordercode', title: 'ordercode'},
+    //         { name: 'catalogPrice', title: 'catalogPrice'},
+    //         { name: 'salesPrice', title: 'salesPrice'},
+    //       ];
+    //       $('section.page').text('');
+    //       $('section.list').text('').append(
+    //         $('table').class('products').append(
+    //           $('thead').append(
+    //             $('tr').append(
+    //               cols.map(col => $('th').text(col.title || col.name))
+    //             )
+    //           ),
+    //           $('tbody').append(
+    //             data.map(row => $('tr').append(
+    //               cols.map(col => $('td').text(row[col.name]))
+    //             ))
+    //           )
+    //         )
+    //       )
+    //     },
+    //     async client(data) {
+    //       // console.log(data);
+    //       cols = [
+    //         { name: 'productTitle', title: 'Titel'},
+    //         { name: 'supplier', title: 'Leverancier'},
+    //         { name: 'brand', title: 'brand'},
+    //         { name: 'productGroup', title: 'productGroup'},
+    //         { name: 'description', title: 'description'},
+    //         { name: 'ordercode', title: 'ordercode'},
+    //         { name: 'catalogPrice', title: 'catalogPrice'},
+    //         { name: 'salesPrice', title: 'salesPrice'},
+    //       ];
+    //       $('section.page').text('');
+    //       $('section.list').text('').append(
+    //         $('table').class('products').append(
+    //           $('thead').append(
+    //             $('tr').append(
+    //               cols.map(col => $('th').text(col.title || col.name))
+    //             )
+    //           ),
+    //           $('tbody').append(
+    //             data.map(row => $('tr').append(
+    //               cols.map(col => $('td').text(row[col.name]))
+    //             ))
+    //           )
+    //         )
+    //       )
+    //     },
+    //     async orderlist(rows) {
+    //       console.warn(rows);
+    //       access_token = await authProvider.getAccessToken();
+    //       function orderCol(name){
+    //         const fieldName = `order${name}Date`;
+    //         return {
+    //           name: fieldName,
+    //           title: name,
+    //           cell: row => row[fieldName]
+    //           ? row[fieldName]//link(row[fieldName], apiUrl+listPath + `?request_type=${name}&order_uid=${row.orderUid}&access_token=${access_token}`, 'page')
+    //           : $('button').text(name),
+    //           // cell: row => console.log(fieldName, row[fieldName]),
+    //         };
+    //       }
+    //       const cols = [
+    //         { name: 'clientKeyName', title: 'Klant', cell: row => link(row.clientKeyName || '', '?request_type=klant_pakbonnen&klantId='+row.clientKeyName) },
+    //         { name: 'orderNr', title: 'Order', cell: row => link(row.orderNr || '', apiUrl+listPath + `?request_type=order&order_uid=${row.orderUid}&access_token=${access_token}`, 'page') },
+    //         { name: 'status', title: 'Status' },
+    //         { name: 'orderDate', title: 'Besteld'},
+    //         orderCol('Print'),
+    //         orderCol('Pick'),
+    //         orderCol('Send'),
+    //         orderCol('Deliver'),
+    //         orderCol('Done'),
+    //         { name: 'invoiceNr', title: 'Factuur', cell: row => link(row.invoiceNr || '', apiUrl+listPath + `?request_type=invoice&invoice_uid=${row.invoiceUid}&access_token=${access_token}`, 'page') },
+    //         { name: 'invoiceDate', title: 'Gefactureerd', cell: row => row.invoiceDate || $('button').text('factureren') },
+    //         { name: 'invoiceSendDate', title: 'Verzonden', cell: row => row.invoiceSendDate || $('button').text('verzenden') },
+    //         { name: 'invoiceBookDate', title: 'Geboekt', cell: row => row.invoiceBookDate || $('button').text('geboekt') },
+    //         { name: 'invoicePayDate', title: 'Betaald', cell: row => row.invoicePayDate || $('button').text('betaald') },
+    //         { name: 'payBank', title: 'Bank', cell: row => row.payBank || $('input').name('bank') },
+    //         { name: 'payPin', title: 'Pin', cell: row => row.payPin || $('input').name('pin') },
+    //         { name: 'payCash', title: 'Contant', cell: row => row.payCash || $('input').name('contant') },
+    //       ];
+    //       om.list(
+    //         rows.map(row => {
+    //           row.Klant = {
+    //             value: row.Klant,
+    //             href: '#test',
+    //           }
+    //           return row;
+    //         }),
+    //         cols,
+    //       );
+    //       // key === 'ClientKeyName' ? $('a').text(row[col.name] || '').href('?ClientUid='+row.ClientUid)
+    //       // : key === 'OrderNr' ? $('a').target('page').text(row[key] || '').href(baseUrl + `request_type=order&order_uid=${row.OrderUid}&access_token=${access_token}`)
+    //       // : key === 'InvoiceNr' ? $('a').target('page').text(row[key] || '').href(baseUrl + `request_type=invoice&invoice_uid=${row.InvoiceUid}&access_token=${access_token}`)
+    //       // : key === 'InvoicePayDateTime' && !row.InvoicePayDateTime ? $('button').text('betaald').on('click', e => {
+    //       //   dmsClient.api('/lijst')
+    //       //   .query('request_type', 'pakbon_betaald')
+    //       //   .query('pakbonId', row.pakbonId)
+    //       //   .get().then(e => row.trElem.remove())
+    //       // })
+    //       // : key === 'InvoiceBookDateTime' && !row.InvoiceBookDateTime ? $('button').text('verwerkt').on('click', e => {
+    //       //   dmsClient.api('/lijst')
+    //       //   .query('request_type', 'pakbon_verwerkt')
+    //       //   .query('pakbonId', row.pakbonId)
+    //       //   .get().then(e => row.trElem.remove())
+    //       // })
+    //       // : $('span').text(row[key] || '')
+    //       // console.log(om);
+    //     },
+    //   }
+    //
+    //   // return;
+    //   function Abis() {
+    //     abis = this;
+    //     // console.log(config);
+    //     // console.log('abis')
+    //
+    //     // if (!aimAccount) {
+    //     //   function signIn() {
+    //     //     aimClient.loginPopup(aimRequest).catch(console.error).then(authResult => {
+    //     //       aimClient.storage.setItem('aimAccount', authResult.account.username);
+    //     //       document.location.reload();
+    //     //     });
+    //     //   }
+    //     //   // const cookie = Object.fromEntries(document.cookie.split('; ').map(c => c.split('=')));
+    //     //   //
+    //     //   // console.log(cookie);
+    //     //   om.navtop.append(
+    //     //     $('button').text('login').on('click', signIn),
+    //     //   )
+    //     // } else {
+    //     function createLijst(rows){
+    //       const keys = Object.keys(rows[0]||{});
+    //       $('lijst').text('').append(
+    //         $('thead').append(
+    //           $('tr').append(
+    //             keys.map(key => $('th').text(key))
+    //           ),
+    //         ),
+    //         $('tbody').append(
+    //           rows.map(row => $('tr').append(
+    //             keys.map(key => $('td').text(row[key] || ''))
+    //           ))
+    //         ),
+    //       )
+    //     }
+    //     function orders(request_type){
+    //       dmsClient.api(listPath).query('request_type', request_type).get().then(body => orderlist(body.values));
+    //     }
+    //     function openstaand(){
+    //       dmsClient.api(listPath).query('request_type', 'klanten_openstaand').get().then(body => {
+    //         const rows = body.values;
+    //         const keys = Object.keys(rows[0]||{});
+    //         $('lijst').text('').append(
+    //           $('thead').append($('tr').append(
+    //             keys.map(key => $('th').text(key)),
+    //             $('th').text('Herinnering')
+    //           )),
+    //           $('tbody').append(
+    //             rows.map(row => $('tr').append(
+    //               keys.map(key => $('td').class(key).append(
+    //                 key === 'klantId'
+    //                 ? $('a').text(row[key] || '').href('?request_type=klant_pakbonnen&klantId='+row[key])
+    //                 : $('span').text(row[key] || '')
+    //               )),
+    //               $('td').append(
+    //                 $('button').text('herinnering').on('click', e => {
+    //                   dmsClient.api(listPath)
+    //                   .query('request_type', 'klant_herinnering')
+    //                   .query('klantId', row.klantId)
+    //                   .get().then(e => {
+    //                     console.log(e, row);
+    //                   })
+    //                 })
+    //               ),
+    //             ))
+    //           ),
+    //         )
+    //       })
+    //     }
+    //     // console.log(dmsConfig);
+    //     abis[url.searchParams.get('request_type') || 'home']();
+    //
+    //     // $(window).on('popstate', e => {
+    //     //   const search = document.location.hash.substr(1) || document.location.search;
+    //     //   // console.log('aaaa', search);
+    //     //   e.preventDefault();
+    //     //   if (search) {
+    //     //     const documentUrl = new URL(document.location);
+    //     //     const url = new URL(search, document.location.origin);
+    //     //     if (url.searchParams.has('l')) {
+    //     //       const listRef = aim.idToUrl(url.searchParams.get('l'));
+    //     //       // console.log(111, listRef);
+    //     //       documentUrl.searchParams.set('l', url.searchParams.get('l'));
+    //     //       documentUrl.hash = '';
+    //     //       window.history.replaceState('', '', documentUrl.href);
+    //     //       const listUrl = new URL(listRef, document.location);
+    //     //       const requestType = listUrl.searchParams.get('request_type')
+    //     //       // console.log(111, requestType, listRef);
+    //     //
+    //     //       // const proc = url.searchParams.get(''));
+    //     //       dmsClient.api(listRef)
+    //     //       // .query('request_type', 'klant_pakbonnen')
+    //     //       // .query('klantId', url.searchParams.get('klantId'))
+    //     //       .get().then(body => listShow(body))
+    //     //     }
+    //     //   }
+    //     //   // console.warn(e.target);
+    //     // }).emit('popstate')
+    //     // // $(window).on('hashchange', e => {
+    //     // //   e.preventDefault();
+    //     // // })
+    //     // // }
+    //
+    //
+    //   }
+    //   Abis.prototype = {
+    //     home(){
+    //       $('body>nav').append(
+    //         $('a').text('home').href(document.location.pathname),
+    //         // $('a').text('home').href(document.location.pathname),
+    //         // $('button').text('orders-geprint').on('click', e => orders('orders-geprint')),
+    //         // $('button').text('openstaand').on('click', openstaand),
+    //         // $('button').text('logout').on('click', signOut),
+    //       );
+    //       function treeItem(title, request_type, ref){
+    //         return $('details').append(
+    //           $('summary').append(
+    //             $('div').text(title).on('click', e => {
+    //               e.preventDefault();
+    //               document.querySelector('section.atv>div').querySelectorAll('div').forEach(el => el.removeAttribute('select'));
+    //               e.target.setAttribute('select', '');
+    //               document.location.hash = listRef(request_type, ref);
+    //             }),
+    //           )
+    //         )
+    //       }
+    //       aim.om.treeview(config.navleft);
+    //     },
+    //     async klant_pakbonnen(klantId) {
+    //       dmsClient.api(listPath)
+    //       .query('request_type', 'klant_pakbonnen')
+    //       .query('klantId', url.searchParams.get('klantId'))
+    //       .get().then(body => orderlist(body.values))
+    //     },
+    //     async orders() {
+    //       dmsClient.api(listPath + document.location.search)
+    //       // .query('request_type', 'klant_pakbonnen')
+    //       // .query('klantId', url.searchParams.get('klantId'))
+    //       .get().then(body => orderlist(body.values))
+    //     },
+    //   }
+    //
+    //   new Abis;
+    //
+    //
+    //
+    // },
   };
   aim.orderChangeCell = function(col, row, isInput){
     if (isInput) {
@@ -1066,6 +1711,76 @@
       });
     })
   };
+
+  function list(selector, options={}){
+    console.log(selector, aim.config.components.schemas[selector]);
+    const args = Array.from(arguments);
+    const url = args.shift();
+    options.$select = aim.config.components.schemas[selector].cols.filter(col => col.header || col.filter).map(col => col.name).join(',')
+    // options.$search = '';
+    document.location.hash = `#?l=${aim.urlToId($().url('https://aliconnect.nl/api/'+selector).query(options).toString())}`;
+  }
+  function displayvalue(row,col){
+    if (col.format === 'date') return new Date(row[col.name]).toLocaleDateString();
+    if (col.type === 'blob') return 'IS BLOB';
+    return row[col.name];
+  }
+  function viewelem(row, col){
+    if (col.type === 'blob') return $('img');
+    return $('span').text(displayvalue(row, col))
+  }
+
+  function inputelem(row,col,data){
+    const key = col.name;
+    let value = row[key];
+    if (value && col.format === 'date') value = new Date(value).toISOString().substr(0,10);
+
+    // console.warn(col.type);
+    if (col.type === 'blob') return $('img').src('data:image/png;base64,' + value);
+
+    return $('input').id('input'+inputId)
+    .name(key)
+    .type(col.format || col.type || types[typeof property.value])
+    .value(value)
+    .readonly(col.readOnly)
+    .step(col.step)
+    .min(col.min)
+    .max(col.max)
+    // .autofocus(name === activeField ? '' : null)
+    // .required(metaData.required || dataObj === null ? '' : null)
+    // .placeholder(placeholder)
+    // .pattern(metaData.pattern)
+    .on('change', e => {
+      let obj = data;
+      obj[key] = e.target.value;
+
+      console.log(data,row,col)
+
+      if (col['@id']) {
+        const ref = col['@id'];
+        const hostname = new URL(ref).hostname;
+        const client = aim.clients.get(hostname);
+        client.api(ref).post({
+          name: key,
+          value: e.target.value,
+        }).then(body => {
+          console.log(3333, body);
+        })
+
+      } else {
+
+        path.forEach(key => obj = obj[key] = obj[key] || {});
+
+        console.log(col);
+
+      }
+
+
+    })
+    // $('label').class('caption').for('input'+inputId),
+    // $('label').class('ico').for('input'+inputId),
+
+  }
   function toLink(s){
     return s.replace(/\(|\)|\[|\]|,|\.|\=|\{|\}/g,'').replace(/ /g,'-').toLowerCase();
   }
@@ -1091,23 +1806,19 @@
     }
   }
   function listview(rows, type, filter){
-    // console.log(rows);
-    // cols = this.cols = cols || this.cols;
-    // $('.pv').text('');
-    rows = aim.listRows = this.rows = rows || this.rows;
+    rows = this.rows = rows || this.rows;
     rows = rows.map(row => row.data ? Object.assign(row,JSON.parse(row.data)) : row);
     filter = {}
-    // console.log(rows);
     const types = {
       cols: () => {
         return $('div').class('cards',type).append(
           rowsVisible.map(row => {
             const div = $('div').on('click', e => {
               if (row.id) {
-                console.log('click', row)
+                // console.log('click', row)
                 const url = new URL(document.location);
                 const ref = row['@id'];//`${row.schemaName}(${row.id})`;
-                console.log(ref);
+                // console.log(ref);
 
                 document.location.hash = `#?id=${btoa(ref)}`;
                 // url.searchParams.set('id', btoa(ref));
@@ -1115,23 +1826,15 @@
                 // page(ref);
               }
             });
-
-            // .attr(row||{})
             return div.append(
               row.images ? $('img').src(row.images[0]) : null,
-              [1,2,3].map(i => $('div').append(
+              [1,2,3].map(i => $('h'+i).append(
                 config.components.schemas[row.schemaName].cols
                 .filter(col => col.header === i)
-                .map(col => aim.cols && aim.cols[col.name] ? aim.cols[col.name](row, div) : valueTag(col,row).class(col.name))
+                .filter(col => row[col.name])
+                .map(col => displayvalue(row,col))
+                .join(', ')
               )),
-              // {
-              //   if (col.type) {
-              //     return $('input').type(col.type).min(0).class(col.name).value(row[col.name] || '')
-              //   }
-              //   if (row[col.name]) {
-              //     return $('div').append(labelTag(col,row),valueTag(col,row))
-              //   }
-              // }),
             );
           }),
           ['','','','','','','','','','','','','','',].map(i => $('span').class('ghost')),
@@ -1170,6 +1873,7 @@
         )
       },
     };
+    const navList = rows.map(row => row.schemaName).unique().map(schemaName => aim.config.components.schemas[schemaName] && aim.config.components.schemas[schemaName].app ? aim.config.components.schemas[schemaName].app.navList : null).filter(Boolean);
     rows.forEach(row => {
       const cols = config.components.schemas[row.schemaName].cols.filter(col => col.filter);
       cols.forEach(col => {
@@ -1181,7 +1885,7 @@
         }
       })
     })
-    let rowsVisible = rows || [];
+    let rowsVisible = aim.listRows = rows || [];
     if (rows.some(row => row.geolocatie)) {
       types.map = () => {
         const mapelem = $('div').class('googlemap').css('width:100%;height:100%;');
@@ -1313,9 +2017,12 @@
         return mapelem;
       }
     }
+    // console.log('filter', filter);
     filter = Object.values(filter);
     filter.forEach(attribute => attribute.values = Object.values(attribute.values).sort((a,b) => String(a.value||'').localeCompare(String(b.value||''), undefined, {numeric: true})));
-    filter = filter.filter(attribute => attribute.values.length>1 && attribute.values.some(value => value.rows.length>1))
+
+    // filter = filter.filter(attribute => attribute.values.length>1 && attribute.values.some(value => value.rows.length>1))
+    filter = filter.filter(attribute => attribute.values.length>1)
 
     sessionStorage.setItem('listType', type = this.type = type || this.type || sessionStorage.getItem('listType') || 'cols');
     function valueTag(col,row){
@@ -1369,13 +2076,17 @@
     function labelTag(col,row){
       return $('label').text(col.title || col.name)
     }
-
     (function buildlist() {
-      const checkedFilters = filter.filter(col => col.checked);
+      const checkedFilters = filter.filter(col => col.checked = col.values.some(val => val.checked));
+      aim.listRows = rowsVisible = rows.filter(
+        row => !filter.some(col => col.checked && (!(col.name in row) || col.values.filter(val => !val.checked).some( val => val.rows.includes(row) )) )
+      );
+
       // console.log(filter,checkedFilters);
       $('.lv').attr('hidefilter', aim.showfilter).text('').append(
         $('nav').append(
           $('button').class('abtn filter').on('click', e => $('.lv').attr('hidefilter', aim.showfilter ^= 1)),
+          ...navList.map(fn => fn()),
           $('button').class('abtn view').append(
             $('div').append(
               Object.keys(types).map(key => $('button').text(key).on('click', e => buildlist(type = key)))
@@ -1416,14 +2127,7 @@
                       $('div').text(val.value)
                       .checked(val.checked)
                       .attr('cnt', val.rows.filter(row => colRowsVisible.includes(row)).length)
-                      .on('click', e => {
-                        val.checked ^= 1;
-                        col.checked = col.values.some(val => val.checked);
-                        rowsVisible = rows.filter(
-                          row => !filter.some(col => col.checked && (!(col.name in row) || col.values.filter(val => !val.checked).some( val => val.rows.includes(row) )) )
-                        );
-                        buildlist();
-                      })
+                      .on('click', e => buildlist(val.checked ^= 1))
                     ]
                   )
                 );
@@ -1533,7 +2237,7 @@
     const hostname = new URL(ref).hostname;
     const client = aim.clients.get(hostname);
     client.api(ref).get().then(body => {
-      console.log(ref,body.schemaName,body);
+      // console.log(ref,body.schemaName,body);
       const schema = config.components.schemas[body.schemaName];
       const app = schema.app || {};
       const data = {};
@@ -1634,7 +2338,6 @@
     });
   }
   function buildForm(data, config){
-    console.log('buildForm',data,config)
     // const metaData = cfg.metaData || { title: isNaN(key) ? key : Number(key)+1 };
     // var dataObj = data;
     const types = {
@@ -1644,6 +2347,7 @@
       object: 'object',
     };
     (function buildForm(parent, obj, config, path = []) {
+      // console.log('buildForm',data,config)
       if (obj) {
         Object.entries(obj).forEach(([key,value]) => {
           if (!config[key]) {
@@ -1665,7 +2369,7 @@
         ([key,property]) => property.metaData &&
         Object.keys(property).length === 1 &&
         (property.metaData.type = property.metaData.type || types[property.value ? typeof property.value : 'string']) &&
-        ['text','number','string','boolean'].includes(property.metaData.type || 'text')
+        ['text','blob','number','string','boolean'].includes(property.metaData.type || 'text')
       )
       const children = configEntries.filter(entry => entry[0] !== 'metaData' && !properties.includes(entry));
 
@@ -1673,44 +2377,48 @@
       properties
       .filter(([key,property]) => aim.isEdit || obj[key])
       .forEach(([key,property]) => {
+        // console.warn(key,property);
         const metaData = config && config[key] && config[key].metaData ? config[key].metaData : {};
+        metaData.name = key;
         parent.append(
           $('div').class('attr').append(
             $('label').class('title').text(metaData.title || nameToTitle(key)),
-            aim.isEdit
-            ? $('input').id('input'+inputId)
-            .name(key)
-            .value(obj[key])
-            .type(metaData.type || types[typeof property.value])
-            // .autofocus(name === activeField ? '' : null)
-            // .required(metaData.required || dataObj === null ? '' : null)
-            // .placeholder(placeholder)
-            // .pattern(metaData.pattern)
-            .on('change', e => {
-              let obj = data;
+            aim.isEdit ? inputelem(obj, metaData, data) : viewelem(obj, metaData),
+            // $('span').text(displayvalue(obj, metaData)),
 
-
-              path.forEach(key => obj = obj[key] = obj[key] || {});
-
-              console.log(metaData);
-
-              obj[key] = e.target.value;
-              if (metaData['@id']) {
-                const ref = metaData['@id'];
-                const hostname = new URL(ref).hostname;
-                const client = aim.clients.get(hostname);
-                client.api(ref).post({
-                  name: key,
-                  value: e.target.value,
-                }).then(body => {
-                  console.log(3333, body);
-                })
-
-              }
-            })
-            // $('label').class('caption').for('input'+inputId),
-            // $('label').class('ico').for('input'+inputId),
-            : $('span').text(obj[key]),
+            // ? $('input').id('input'+inputId)
+            // .name(key)
+            // .value(obj[key])
+            // .type(metaData.type || types[typeof property.value])
+            // // .autofocus(name === activeField ? '' : null)
+            // // .required(metaData.required || dataObj === null ? '' : null)
+            // // .placeholder(placeholder)
+            // // .pattern(metaData.pattern)
+            // .on('change', e => {
+            //   let obj = data;
+            //
+            //
+            //   path.forEach(key => obj = obj[key] = obj[key] || {});
+            //
+            //   console.log(metaData);
+            //
+            //   obj[key] = e.target.value;
+            //   if (metaData['@id']) {
+            //     const ref = metaData['@id'];
+            //     const hostname = new URL(ref).hostname;
+            //     const client = aim.clients.get(hostname);
+            //     client.api(ref).post({
+            //       name: key,
+            //       value: e.target.value,
+            //     }).then(body => {
+            //       console.log(3333, body);
+            //     })
+            //
+            //   }
+            // })
+            // // $('label').class('caption').for('input'+inputId),
+            // // $('label').class('ico').for('input'+inputId),
+            // : $('span').text(obj[key]),
           )
         )
       })
@@ -1724,9 +2432,7 @@
           .parent(parent)
           .open(localStorage.getItem(key+'Open'))
           .on('toggle', e => localStorage.setItem(key+'Open', e.target.open ? 1 : ''))
-          .append(
-            $('summary').text(metaData.title)
-          ),
+          .append($('summary').text(metaData.title)),
           obj[key] || {},
           value || {},
           path.concat(key),
@@ -2041,14 +2747,6 @@
     },
   };
 
-  function prop(row,col,edit){
-    this.append(
-      $('label').text(col.name),
-      $('input').value(row[col.name]),
-    )
-    return this;
-  }
-
   function Elem (selector) {
     const args = Array.from(arguments);
     selector = args.shift();
@@ -2085,7 +2783,6 @@
     }
   };
   Elem.prototype = {
-    prop,
     buildForm,
     append(){
 			this.elem = this.elem || document.body;
@@ -2427,6 +3124,20 @@
       //   $('h1').text('JAaa'),
       // )
 
+    },
+    printbody() {
+      this.parent(document.body).style('display:none');
+      const doc = this.elem.contentWindow.document;
+      const body = document.createElement('body');
+      doc.open();
+      doc.appendChild(body);
+      doc.close();
+      const elem = $('div').parent(body);
+      elem.print = () => {
+        setTimeout(e => this.elem.contentWindow.print(), 200);
+        setTimeout(e => this.remove(), 500);
+      }
+      return elem;
     },
     // dark(){
     //   $(document.documentElement).attr('dark', sessionStorage.getItem('dark'));
@@ -3065,7 +3776,7 @@
       })
 			.on('keydown', e => {
         var range = window.getSelection().getRangeAt(0);
-        for (var el = range.startContainer.parentElement; el && el.tagName !== 'DIV'; el = el.parentElement);
+        for (var el = range.startContainer.parentElement; el.tagName !== 'DIV'; el = el.parentElement);
         if (e.keyPressed === 'ctrl_alt_BracketLeft') {
           e.preventDefault();
           toggleOpen(el, 0)
@@ -3090,7 +3801,7 @@
           prefix.selectNodeContents(el);
           prefix.setEnd(range.endContainer, range.endOffset);
           var col = prefix.toString().length;
-          // $.his.elem.statusbar['pos'].text(`${row+1}:${col+1}`);
+          $.his.elem.statusbar['pos'].text(`${row+1}:${col+1}`);
           var el = children[row];
           // console.log(el, sel, e.keyCode);
           if (el.hasAttribute('hide')) {
@@ -3121,7 +3832,7 @@
             if (e.keyCode >= 0x30 || e.keyCode == 0x20) {
               const rowsOpen = children.map(el => el.getAttribute('open'));
               $(el).markup();
-              // console.log(el, col);
+              console.log(el, col);
               setCaret(el, col);
 
               //
@@ -7054,7 +7765,6 @@
     querySelector:{value(){return $(this.elem.querySelector(...arguments))}},
     querySelectorAll:{value(){return Array.from(this.elem.querySelectorAll(...arguments)).map($)}},
   });
-
   [
     'focus',
     'select',
@@ -10028,7 +10738,6 @@
     }))
   }
 
-
   Object.assign(aim, {
     Clipboard,
     Popup,
@@ -10207,6 +10916,7 @@
         return replacedText;
     },
     listview,
+    list,
     loadStoredCss: () => {
       const css = JSON.parse(localStorage.getItem('css')) || {};
       for (let [id, param] of Object.entries(css)) {
@@ -11429,34 +12139,29 @@
 
   config = {};
   aim.searchParams = new URLSearchParams(document.location.search);
-  window.addEventListener('load', async e => {
-    // // if (aim.config.client_id) {
-    //   config = await aim.api('/aliconnect/config').query({
-    //     path: 'https://aliconnect.nl/forms/config',
-    //     response_type: 'data',
-    //     hostname: document.location.hostname,
-    //     client_id: aim.config.client_id,
-    //   })
-    //   .get()
-    //   .then(res => res.json());
-    //   // console.log(1, config, config.client);
-    //   // config = JSON.parse(config);
-    //   // console.log(JSON.parse(config));
-    //
-    //
-    //   if (config && config.components && config.components.schemas) {
-    //     Object.entries(config.components.schemas).forEach(([schemaName, schema]) => schema.cols = Object.entries(schema.properties||{}).map(([name,prop]) => Object.assign({name: name}, prop)));
-    //   }
-    //   // console.log(111, config, aim.config.client_id);
-    //   // return;
-    // // }
-    // Object.assign(aim.config, config);
-    // aim.config.client_id = aim.config.client_id || aim.config.client.client_id;
-    // // console.warn('START', aim.config)
-    //
-    //
-    //
-    //
+  window.addEventListener('load', async function webLoad(e) {
+    // if (aim.config.client_id) {
+      config = await aim.api('/aliconnect/config').query({
+        path: 'https://aliconnect.nl/forms/config',
+        response_type: 'data',
+        hostname: document.location.hostname,
+        client_id: aim.config.client_id,
+      }).get().then(res => res.json());
+      // console.log(1, config, config.client);
+      // config = JSON.parse(config);
+      // console.log(JSON.parse(config));
+
+
+      if (config && config.components && config.components.schemas) {
+        Object.entries(config.components.schemas).forEach(([schemaName, schema]) => schema.cols = Object.entries(schema.properties||{}).map(([name,prop]) => Object.assign({name: name}, prop)));
+      }
+      // console.log(111, config, aim.config.client_id);
+      // return;
+    // }
+    Object.assign(aim.config, config);
+    aim.config.client_id = aim.config.client_id || aim.config.client.client_id;
+    // console.warn('START', aim.config)
+
     var firstFolder = document.location.pathname.match(/(\w+)\//);
     if (firstFolder && libraries[firstFolder[1]]) {
       await libraries[firstFolder[1]]();
@@ -11469,52 +12174,53 @@
     }
     await $().emit('load');
     await $().emit('ready');
+    let docsearchParams = new URLSearchParams();
     function seturl(e){
       if (aim.href === document.location.href) return;
       aim.href = document.location.href;
       // e.stopPropagation();
-      const docsearchParams = new URLSearchParams(document.location.search);
+      // const docsearchParams = new URLSearchParams(document.location.search);
+      // const curdocsearchParams = new URLSearchParams(document.location.search);
       const searchParams = new URLSearchParams(document.location.hash ? document.location.hash.substr(1) : document.location.search);
-      // console.log('seturl', e.type, searchParams, aim.searchParams);
+      // console.log('seturl', searchParams.toString());
+      // console.log('seturl', docsearchParams.toString());
+      const changed = {};
       // console.log('seturl', searchParams);
-      searchParams.forEach((value,key) => docsearchParams.set(key,value));
+
+      searchParams.forEach((value,key) => value !== docsearchParams.get(key) ? docsearchParams.set(key,changed[key] = value) : null);
       searchParams.forEach((value,key) => aim[key] ? aim[key](value) : null);
+      // console.log(changed, changed.l);
       // console.log(aim.searchParams.get('l'), searchParams.get('l'));
 
-      if (docsearchParams.get('l') || docsearchParams.get('id')) {
-        if (docsearchParams.get('l')) {
-          if (searchParams.get('l') || searchParams.get('$search')) {
-            const listUrl = new URL(aim.idToUrl(docsearchParams.get('l')));
-            if (docsearchParams.get('$search')) {
-              listUrl.searchParams.set('$search', docsearchParams.get('$search'));
-            }
-            docsearchParams.set('l', aim.urlToId(listUrl));
-            const hostname = new URL(listUrl).hostname;
-            const client = aim.clients.get(hostname);
-            // console.log(client);
-            if (client) {
-              client.api(listUrl.href).get().then(async body => {
-                console.log(listUrl.href, body);
-                // const items = body.value || body.Children || await body.children;
-                listShow(body);
-                // aim().list(items);
-              });
-            } else {
-              // aim('list').load(refurl.href);
-            }
-          } else if (!docsearchParams.get('l')) {
-            $('.lv').text('');
+      if (changed.l || changed.id || changed.$search) {
+        // if (changed.l) {
+        if (changed.l || changed.$search) {
+          const listUrl = new URL(aim.idToUrl(docsearchParams.get('l')));
+          // console.log(8888, searchParams.get('l') !== curdocsearchParams.get('l'), searchParams.get('l'), curdocsearchParams.get('l'));
+          if (changed.$search) {
+            listUrl.searchParams.set('$search', changed.$search);
           }
+          // docsearchParams.set('l', aim.urlToId(listUrl));
+          const hostname = new URL(listUrl).hostname;
+          const client = aim.clients.get(hostname);
+          // console.log(client);
+          if (client) {
+            client.api(listUrl.href).get().then(async body => {
+              console.log('SHOW');
+              // const items = body.value || body.Children || await body.children;
+              listShow(body);
+              // aim().list(items);
+            });
+            // } else {
+            //   // aim('list').load(refurl.href);
+          }
+          // } else if (!changed.l) {
+          //   $('.lv').text('');
+          // }
         }
-        if (searchParams.get('id')) {
+        if (changed.id) {
           page(atob(searchParams.get('id')));
-        } else if (!docsearchParams.get('id')) {
-
         }
-      } else {
-        // const pathname = document.location.pathname.substr(1) || 'Home';
-
-
       }
       // console.log(aim.searchParams);
       if (aim.searchParams) {

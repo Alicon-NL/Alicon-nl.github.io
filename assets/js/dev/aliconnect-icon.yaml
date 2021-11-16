@@ -1,0 +1,264 @@
+Menu:
+  menu: f05c
+  more: f01b
+  help: f02e
+  dark: f333
+  tools: f01a
+  config: f019
+  account: f0ea
+  login: f25b
+  logout: f25c
+  aliconnect: f000
+Navigate:
+  start: f017
+  start-negative: f016
+  up: f01c
+  down: f01d
+  back: f01e
+  next: f01f
+  left: f03f
+  right: f040
+  return: f020
+  check: f022
+  close: f021
+  # previous: f01e
+  # prior: f01e
+  pin: f09f
+  unpin: f0a1
+  popout: f152
+  zoom: f090
+  zoom-in: f091
+  zoom-out: f092
+  # popin: f151
+Message:
+  msg: f08e
+  at: f03c
+  or: f03d
+  brackets: f03e
+Edit:
+  undo: f023
+  redo: f024
+  cut: f00f
+  copy: f00e
+  paste: f011
+  clear: f162
+  check-mark: f06c
+  cross-mark: f06d
+  cross-mark-small: f3f8
+  check-mark-squared-negative: f06e
+  check-mark-squared: f06f
+Format:
+  forecolor: f036
+  backcolor: f15f
+  bold: f030
+  italic: f031
+  underline: f02f
+  strikeThrough: f236
+  fontsize: f1db
+  fontname: f4b1
+  switchMode: f545
+  removeFormat: f037
+  insertorderedlist: f0ff
+  insertunorderedlist: f066
+  justifyleft: f06b
+  justifycenter: f06a
+  justifyright: f069
+  justifyfull: f4f2
+  indent: f062
+  outdent: f061
+  superscript: f238
+  subscript: f239
+  blockquote: f4a4
+  code: f237
+  link: f015
+  unlink: f22b
+Form:
+  add: f025
+  edit: f00b
+  # editfile: f00b
+  del: f00d
+  # hyperlink: f015
+  # link: f015
+  fav: f002
+  fav-checked: f001
+  flag: f094
+  negative-flag: f095
+  lock: f0a2
+  unlock: f0a3
+  key: f0a4
+  # flagcheck: f095
+  attach: f013
+  image: f014
+  camera: f100
+  camera-toggle: f102
+  paint: f2d5
+Select:
+  checked: f06c
+  box: f071
+  # boxchecked: f06f
+  done: f140
+  warning: f13e
+  alert: f10c
+Data:
+  search: f018
+  filter: f012
+  select: f52c
+  refresh: f082
+  sort: f322
+  sorta: f323
+  upload: f049
+  download: f048
+  share: f12b
+  public: f108
+  trash: f233
+  save: f00c
+
+View:
+  view: f0d4
+  pdf: f122
+  printdoc: f11f
+  printmenu: f11f
+  print: f0ad
+  network: f1cf
+  qrscan: f100
+
+  slide: f1ab
+  cols: f0c8
+  rows: f05e
+  table: f06b
+  ganth: f39d
+  chart: f226
+  model: f1cf
+  maps: f093
+  model2d: f0fd
+  model3d: f0fe
+  show3d: f0fe
+Calendar/Time:
+  calendar: f0e4
+  month: f0e4
+  week: f0e2
+  workweek: f0e7
+  day: f0e5
+  today: f0e6
+  # today2: f0e6
+  clock: f13b
+  clock-finish: f13c
+  # onoff: f13b
+  history: f07b
+  task: f010
+  taskboard: f011
+Mail:
+  mail: f0b4
+  mail-read: f0b5
+  mail-forward: f0b6
+  mail-reply: f0b7
+  mail-replyall: f0b8
+  mail-import: f27f
+  mail-send: f08b
+  # sendchecked: f08c
+  negative-mail-send: f08c
+CRM:
+  enterprise: f0f9
+  site: f0f8
+  team: f0eb
+  # location: f12d
+  contact: f0f1
+  contact-add: f0f0
+  contact-lock: f0ef
+  contact-private: F38F
+
+  # BlockContact: f0ef
+  contact-stop: f0ee
+  contact-card: f0ec
+  # crm: f0ec
+  contactmessage: f0f3
+
+  # company: f0eb
+  # organisation: f0eb
+
+  # WebSite: f12c
+  webpage: f12c
+  # www: f12c
+  phone: f112
+  # mobile: f112
+Shop:
+  shop: f0b0
+  bagAdd: f0b1
+  shopbag: f0b3
+  kassa: f0ae
+  scanner: f0b2
+  invoice: f0af
+  product: f0c4
+  asset: f0c4
+Folders:
+  folder: f0d9
+  folder-add: f0dc
+  folder-refresh: f0de
+  folder-upload: f0da
+  folder-import: f0db
+  document: f11e
+  doc: f11e
+  doctxt: f22c
+Attach:
+  data: f123
+  datareadonly: f124
+  dataprivate: f125
+  # toexcel: f245
+  msexcel: f245
+  msword: f248
+Extension:
+  ext-pdf: f122
+  ext-zip: f22d
+  ext-xls: f245
+  ext-doc: f248
+  ext-docx: f248
+  ext-xlsx: f245
+  ext-ppt: f247
+  ext-pptx: f247
+  ext-vsd: f24a
+  ext-vsdx: f24a
+
+OO:
+  typical: f153
+  source: f14b
+  showInherited: f14a
+  clone: f14d
+  revert: f14d
+  derived: f14c
+  inherit: f14c
+  class: f153
+Control:
+  device: f173
+  iointerface: f1ce
+  controller: f1cd
+  iomodule: f1b2
+  system: f0cb
+  signal: f29d
+  io: f29e
+  controlio: f29e
+  controlinput: f29a
+  controloutput: f29b
+  controlinoutput: f29c
+  plm: f0c6
+  se: f0c6
+  softwarefunction: f10e
+  attribute: f0fa
+  # input: f0fa
+Schema:
+  schema-Contact: f0f1
+  schema-Enterprise: f329
+  schema-Site: f32a
+  schema-Area: f32b
+
+  schema-ProcessCell: f3a4
+  schema-Unit: f32c
+  schema-EquipmentModule: f32d
+  schema-ControlModule: f32e
+  schema-System: f0cb
+  schema-Webpage: f12c
+  schema-Device: f173
+  schema-Control: f0c4
+  schema-ControlIO: f29e
+  schema-Attribute: f0fa
+Other:
+  books: f0d5
