@@ -29,3 +29,6 @@ Introductie over de automation integration Manager
 # ISA-95 Manufacturing Operations Activities
 
 [![ISA-95 Manufacturing Operations Activities](/assets/img/isa95-manufacturing-operations-activities.png)](wiki/isa95-manufacturing-operations-activities)
+
+1. [Wiki](https://github.com/alicon-nl/alicon-nl.github.io/wiki)
+1. [Admin](Learn-Admin)

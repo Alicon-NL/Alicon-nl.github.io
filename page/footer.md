@@ -1,7 +1,0 @@
-- Contact
-    - Company name
-    - Telefoon:
-    - Fax:
-    - E-Mail:
-- Bezoekadres
-    - Company name

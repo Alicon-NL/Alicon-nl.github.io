@@ -1,2 +1,0 @@
-- [Home](/page/Home)
-- [Contact](/page/Contact)
