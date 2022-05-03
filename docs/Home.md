@@ -1,7 +1,7 @@
 ![Alicon Process Development](img/alicon-process-development.png)
 Onze missie is om organisaties _efficiënter_ en _effectiever_ te laten samenwerken en de strategie daarvoor is te zorgen voor de _hoogste kwaliteit_ van informatie binnen een organisatie, de absolute waarheid, overal en op ieder moment.
 
-1. [ISA-95 Levels of Automation](#ISA-95 Levels of Automation)
+1. link naar [ISA-95 Levels of Automation](#isa-95-levels-of-automation)
 
 Onze aanpak is strategie, structuur en systemen te verbinden. Wij zorgen voor de informatie-_architectuur_ om uw informatie-infra _structuur_ te ondersteunen.
 
