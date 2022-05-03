@@ -31,4 +31,4 @@ Introductie over de automation integration Manager
 
 [![ISA-95 Manufacturing Operations Activities](/assets/img/isa95-manufacturing-operations-activities.png)](wiki/isa95-manufacturing-operations-activities)
 
-1. [[Learn-ISA-88-Physical-structure]]
+1. [[Physical structure|Learn-ISA-88-Physical-structure]]
