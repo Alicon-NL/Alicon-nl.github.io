@@ -1,2 +1,2 @@
-- [Home](/page/Home)
-- [Contact](/page/Contact)
+- [Home](Home.md)
+- [Contact](Contact.md)
