@@ -9,3 +9,25 @@ div.message{
   font-family: monospace;
   white-space: pre;
 }
+
+.balans tr.h1 {font-size:130%;font-weight: bold; color:rgb(46,116,181); }
+.balans tr.h1 td {padding-top:10px;}
+.balans tr.h2 {font-size:120%;font-style: italic; color:rgb(46,116,181); }
+.balans tr.h2 .oms {padding-left:10px;}
+.balans tr.h3 {font-size:115%; color:rgb(31,77,120); }
+.balans tr.h3 .oms {padding-left:20px;}
+.balans tr.h4 {font-size:110%;}
+.balans tr.h4 .oms {padding-left:30px;}
+.balans tr.h5 {font-size:105%;}
+.balans tr.h5 .oms {padding-left:40px;}
+.balans tr.h6 {font-size:100%;}
+.balans tr.h6 .oms {padding-left:50px;}
+.balans tr.h7 {font-size:100%;}
+.balans tr.h7 .oms {padding-left:60px;}
+.balans tr.h8 {font-size:100%;}
+.balans tr.h8 .oms {padding-left:70px;}
+.balans tr.h9 {font-size:100%;}
+.balans tr.h9 .oms {padding-left:80px;}
+.balans td, .balans  th {
+  white-space: nowrap;
+}

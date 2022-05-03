@@ -8,7 +8,7 @@
 <body>
     <button onclick='console.log(window.parent);window.parent.frames["verslag"].focus();window.parent.frames["verslag"].print();'>Print</button>
     <?php
-        for ($jaar = 2021; $jaar >= 2014; $jaar--) {
+        for ($jaar = 2023; $jaar >= 2014; $jaar--) {
             echo "<li><a target='verslag' href='verslag.php?jaar=$jaar'>BALANS $bedrijf $jaar</a></li>";
             echo "<li><a target='verslag' href='boek.php?jaar=$jaar'>BOEK $bedrijf $jaar</a></li>";
         }
